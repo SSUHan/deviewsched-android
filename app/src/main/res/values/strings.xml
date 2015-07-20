@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Deview2015</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <!-- Navigation View-->
+    <string name="home">Home</string>
+    <string name="all_schedule">전체 시간표</string>
+    <string name="my_schedule">나의 시간표</string>
+    <string name="find_friends">친구 찾기</string>
+    <string name="deview_story">#Deview2015</string>
+    <string name="setting">설정</string>
 </resources>
