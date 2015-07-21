@@ -1,9 +1,6 @@
-package com.gdgssu.android_deviewsched;
+package com.gdgssu.android_deviewsched.ui;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,16 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gdgssu.android_deviewsched.R;
+
 /**
  * Created by flashgugu on 15. 7. 20.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends DeviewFragment {
     private Toolbar mToolbar;
 
     private static final String APP_NAME_KEY = "APP_NANE";
     private CharSequence appName;
 
-    private OnFragmentInteractionListener mListener;
     private String TAG = "HomeFragment";
 
     public static HomeFragment newInstance(CharSequence appName) {
@@ -62,33 +60,5 @@ public class HomeFragment extends Fragment {
         final ActionBar ab = ((AppCompatActivity)getActivity()).getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
         ab.setDisplayHomeAsUpEnabled(true);
-    }
-
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
     }
 }
