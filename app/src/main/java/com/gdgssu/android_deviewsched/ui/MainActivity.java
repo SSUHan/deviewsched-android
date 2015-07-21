@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.gdgssu.android_deviewsched.R;
 
-
 public class MainActivity extends AppCompatActivity implements DeviewFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
