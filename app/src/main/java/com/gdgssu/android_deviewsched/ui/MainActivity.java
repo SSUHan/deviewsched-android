@@ -1,5 +1,6 @@
 package com.gdgssu.android_deviewsched.ui;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gdgssu.android_deviewsched.R;
-
 
 public class MainActivity extends AppCompatActivity implements DeviewFragment.OnFragmentInteractionListener {
 
@@ -59,9 +59,11 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
                 switch (menuItem.getItemId()) {
                     case R.id.nav_home:
                         showHome();
+
                         break;
                     case R.id.nav_all_schedule:
                         showAllSche(getResources().getText(R.string.all_schedule));
+
                         break;
                     case R.id.nav_my_schedule:
                         showMySche(getResources().getText(R.string.my_schedule));
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
 
                         break;
                     case R.id.nav_setting:
-                        //showSetting(getResources().getText(R.string.setting));
+                        startActivity(new Intent(MainActivity.this, SettingActivity.class));
 
                         break;
                 }
