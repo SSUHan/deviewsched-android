@@ -101,34 +101,34 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
     public void showAllSche(CharSequence title){
         Fragment allScheFragment = AllScheFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.content_container, allScheFragment);
+        fragmentTransaction.replace(R.id.content_container, allScheFragment);
         fragmentTransaction.addToBackStack(null).commit();
 
         mDrawerLayout.closeDrawers();
     }
 
     public void showMySche(CharSequence title){
-        Fragment myScheFragment = AllScheFragment.newInstance(title);
+        Fragment myScheFragment = MyScheFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.content_container, myScheFragment);
+        fragmentTransaction.replace(R.id.content_container, myScheFragment);
         fragmentTransaction.addToBackStack(null).commit();
 
         mDrawerLayout.closeDrawers();
     }
 
     public void showFindFriends(CharSequence title){
-        Fragment findFriendsFragment = AllScheFragment.newInstance(title);
+        Fragment findFriendsFragment = FindFriendsFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.content_container, findFriendsFragment);
+        fragmentTransaction.replace(R.id.content_container, findFriendsFragment);
         fragmentTransaction.addToBackStack(null).commit();
 
         mDrawerLayout.closeDrawers();
     }
 
     public void showDeviewStory(CharSequence title){
-        Fragment deviewStoryFragment = AllScheFragment.newInstance(title);
+        Fragment deviewStoryFragment = DeviewStoryFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.content_container, deviewStoryFragment);
+        fragmentTransaction.replace(R.id.content_container, deviewStoryFragment);
         fragmentTransaction.addToBackStack(null).commit();
 
         mDrawerLayout.closeDrawers();
