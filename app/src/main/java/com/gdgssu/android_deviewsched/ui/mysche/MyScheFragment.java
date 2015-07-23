@@ -1,4 +1,4 @@
-package com.gdgssu.android_deviewsched.ui.MySche;
+package com.gdgssu.android_deviewsched.ui.mysche;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

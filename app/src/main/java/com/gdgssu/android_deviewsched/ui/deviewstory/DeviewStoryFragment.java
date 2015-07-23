@@ -1,4 +1,4 @@
-package com.gdgssu.android_deviewsched.ui.DeviewStory;
+package com.gdgssu.android_deviewsched.ui.deviewstory;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

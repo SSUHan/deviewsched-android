@@ -16,11 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gdgssu.android_deviewsched.R;
-import com.gdgssu.android_deviewsched.ui.AllSche.AllScheFragment;
-import com.gdgssu.android_deviewsched.ui.DeviewStory.DeviewStoryFragment;
-import com.gdgssu.android_deviewsched.ui.FindFriends.FindFriendsFragment;
-import com.gdgssu.android_deviewsched.ui.MySche.MyScheFragment;
-import com.gdgssu.android_deviewsched.ui.Setting.SettingActivity;
+import com.gdgssu.android_deviewsched.ui.allsche.AllScheFragment;
+import com.gdgssu.android_deviewsched.ui.deviewstory.DeviewStoryFragment;
+import com.gdgssu.android_deviewsched.ui.findfriends.FindFriendsFragment;
+import com.gdgssu.android_deviewsched.ui.mysche.MyScheFragment;
+import com.gdgssu.android_deviewsched.ui.setting.SettingActivity;
 import com.gdgssu.android_deviewsched.ui.home.HomeFragment;
 
 public class MainActivity extends AppCompatActivity implements DeviewFragment.OnFragmentInteractionListener {

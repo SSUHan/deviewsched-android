@@ -1,4 +1,4 @@
-package com.gdgssu.android_deviewsched.ui.Setting;
+package com.gdgssu.android_deviewsched.ui.setting;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
