@@ -1,4 +1,4 @@
-package com.gdgssu.android_deviewsched.ui;
+package com.gdgssu.android_deviewsched.ui.home;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gdgssu.android_deviewsched.R;
+import com.gdgssu.android_deviewsched.ui.DeviewFragment;
 
 public class HomeFragment extends DeviewFragment {
     private Toolbar mToolbar;

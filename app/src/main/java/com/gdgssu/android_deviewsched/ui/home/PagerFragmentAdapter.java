@@ -1,4 +1,4 @@
-package com.gdgssu.android_deviewsched.ui;
+package com.gdgssu.android_deviewsched.ui.home;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

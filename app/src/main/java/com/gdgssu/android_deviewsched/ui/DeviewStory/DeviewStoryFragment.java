@@ -1,4 +1,4 @@
-package com.gdgssu.android_deviewsched.ui;
+package com.gdgssu.android_deviewsched.ui.DeviewStory;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,8 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gdgssu.android_deviewsched.R;
+import com.gdgssu.android_deviewsched.ui.DeviewFragment;
 
-public class MyScheFragment extends DeviewFragment {
+public class DeviewStoryFragment extends DeviewFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String KEY_TITLE = "title";
@@ -23,15 +24,15 @@ public class MyScheFragment extends DeviewFragment {
      * @return A new instance of fragment AllScheFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MyScheFragment newInstance(CharSequence title) {
-        MyScheFragment fragment = new MyScheFragment();
+    public static DeviewStoryFragment newInstance(CharSequence title) {
+        DeviewStoryFragment fragment = new DeviewStoryFragment();
         Bundle args = new Bundle();
         args.putCharSequence(KEY_TITLE, title);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public MyScheFragment() {
+    public DeviewStoryFragment() {
         // Required empty public constructor
     }
 
@@ -47,6 +48,6 @@ public class MyScheFragment extends DeviewFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_sche, container, false);
+        return inflater.inflate(R.layout.fragment_deview_story, container, false);
     }
 }
