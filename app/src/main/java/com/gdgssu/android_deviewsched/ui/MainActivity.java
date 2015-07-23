@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.appevents.AppEventsLogger;
 import com.gdgssu.android_deviewsched.R;
 import com.gdgssu.android_deviewsched.ui.allsche.AllScheFragment;
 import com.gdgssu.android_deviewsched.ui.deviewstory.DeviewStoryFragment;
@@ -22,6 +23,8 @@ import com.gdgssu.android_deviewsched.ui.findfriends.FindFriendsFragment;
 import com.gdgssu.android_deviewsched.ui.mysche.MyScheFragment;
 import com.gdgssu.android_deviewsched.ui.setting.SettingActivity;
 import com.gdgssu.android_deviewsched.ui.home.HomeFragment;
+
+import com.facebook.FacebookSdk;
 
 public class MainActivity extends AppCompatActivity implements DeviewFragment.OnFragmentInteractionListener {
 
@@ -172,5 +175,19 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
         super.onBackPressed();
 
         showHome();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        AppEventsLogger.activateApp(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        AppEventsLogger.deactivateApp(this);
     }
 }
