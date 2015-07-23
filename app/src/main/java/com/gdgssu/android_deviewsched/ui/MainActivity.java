@@ -24,8 +24,6 @@ import com.gdgssu.android_deviewsched.ui.mysche.MyScheFragment;
 import com.gdgssu.android_deviewsched.ui.setting.SettingActivity;
 import com.gdgssu.android_deviewsched.ui.home.HomeFragment;
 
-import com.facebook.FacebookSdk;
-
 public class MainActivity extends AppCompatActivity implements DeviewFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;

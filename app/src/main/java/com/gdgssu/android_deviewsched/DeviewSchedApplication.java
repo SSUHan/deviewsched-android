@@ -5,9 +5,6 @@ import android.content.Context;
 
 import com.facebook.FacebookSdk;
 
-/**
- * Created by flashgugu on 15. 7. 23.
- */
 public class DeviewSchedApplication extends Application{
 
     public static Context GLOBAL_CONTEXT;
