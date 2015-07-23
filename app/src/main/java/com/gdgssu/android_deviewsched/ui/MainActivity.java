@@ -15,12 +15,18 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.appevents.AppEventsLogger;
 import com.gdgssu.android_deviewsched.R;
+import com.gdgssu.android_deviewsched.ui.allsche.AllScheFragment;
+import com.gdgssu.android_deviewsched.ui.deviewstory.DeviewStoryFragment;
+import com.gdgssu.android_deviewsched.ui.findfriends.FindFriendsFragment;
+import com.gdgssu.android_deviewsched.ui.mysche.MyScheFragment;
+import com.gdgssu.android_deviewsched.ui.setting.SettingActivity;
+import com.gdgssu.android_deviewsched.ui.home.HomeFragment;
 
 public class MainActivity extends AppCompatActivity implements DeviewFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
-    private NavigationView navigationView;
 
     private ImageView avatarImage;
     private TextView nameText;
@@ -42,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
     private void initNavigationView() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         if (navigationView != null)
             setupDrawerContent(navigationView);
@@ -78,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
 
                         break;
                     case R.id.nav_setting:
-                        startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                        showSetting();
 
                         break;
                 }
@@ -101,40 +107,41 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
     public void showAllSche(CharSequence title){
         Fragment allScheFragment = AllScheFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.content_container, allScheFragment);
+        fragmentTransaction.replace(R.id.content_container, allScheFragment);
         fragmentTransaction.addToBackStack(null).commit();
 
         mDrawerLayout.closeDrawers();
     }
 
     public void showMySche(CharSequence title){
-        Fragment myScheFragment = AllScheFragment.newInstance(title);
+        Fragment myScheFragment = MyScheFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.content_container, myScheFragment);
+        fragmentTransaction.replace(R.id.content_container, myScheFragment);
         fragmentTransaction.addToBackStack(null).commit();
 
         mDrawerLayout.closeDrawers();
     }
 
     public void showFindFriends(CharSequence title){
-        Fragment findFriendsFragment = AllScheFragment.newInstance(title);
+        Fragment findFriendsFragment = FindFriendsFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.content_container, findFriendsFragment);
+        fragmentTransaction.replace(R.id.content_container, findFriendsFragment);
         fragmentTransaction.addToBackStack(null).commit();
 
         mDrawerLayout.closeDrawers();
     }
 
     public void showDeviewStory(CharSequence title){
-        Fragment deviewStoryFragment = AllScheFragment.newInstance(title);
+        Fragment deviewStoryFragment = DeviewStoryFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.content_container, deviewStoryFragment);
+        fragmentTransaction.replace(R.id.content_container, deviewStoryFragment);
         fragmentTransaction.addToBackStack(null).commit();
 
         mDrawerLayout.closeDrawers();
     }
 
     public void showSetting(){
+        startActivity(new Intent(MainActivity.this, SettingActivity.class));
 
         mDrawerLayout.closeDrawers();
     }
@@ -166,5 +173,19 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
         super.onBackPressed();
 
         showHome();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        AppEventsLogger.activateApp(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        AppEventsLogger.deactivateApp(this);
     }
 }

@@ -1,14 +1,14 @@
-package com.gdgssu.android_deviewsched.ui;
+package com.gdgssu.android_deviewsched.ui.findfriends;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.gdgssu.android_deviewsched.R;
+import com.gdgssu.android_deviewsched.ui.DeviewFragment;
 
-public class AllScheFragment extends DeviewFragment {
+public class FindFriendsFragment extends DeviewFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String KEY_TITLE = "title";
@@ -24,15 +24,15 @@ public class AllScheFragment extends DeviewFragment {
      * @return A new instance of fragment AllScheFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AllScheFragment newInstance(CharSequence title) {
-        AllScheFragment fragment = new AllScheFragment();
+    public static FindFriendsFragment newInstance(CharSequence title) {
+        FindFriendsFragment fragment = new FindFriendsFragment();
         Bundle args = new Bundle();
         args.putCharSequence(KEY_TITLE, title);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public AllScheFragment() {
+    public FindFriendsFragment() {
         // Required empty public constructor
     }
 
@@ -41,6 +41,7 @@ public class AllScheFragment extends DeviewFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             title = getArguments().getString(KEY_TITLE);
+
         }
     }
 
@@ -48,6 +49,6 @@ public class AllScheFragment extends DeviewFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_sche, container, false);
+        return inflater.inflate(R.layout.fragment_find_friends, container, false);
     }
 }
