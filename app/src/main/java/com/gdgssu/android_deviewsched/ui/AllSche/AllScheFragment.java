@@ -9,6 +9,7 @@ import com.gdgssu.android_deviewsched.R;
 import com.gdgssu.android_deviewsched.ui.DeviewFragment;
 
 public class AllScheFragment extends DeviewFragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String KEY_TITLE = "title";

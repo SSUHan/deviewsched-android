@@ -13,8 +13,6 @@ import com.gdgssu.android_deviewsched.R;
 import com.gdgssu.android_deviewsched.ui.DeviewFragment;
 
 public class HomeFragment extends DeviewFragment {
-    private Toolbar mToolbar;
-    private ViewPager mPager;
 
     private static final String APP_NAME_KEY = "APP_NANE";
     private CharSequence appName;
@@ -54,7 +52,7 @@ public class HomeFragment extends DeviewFragment {
     }
 
     private void initToolbar(View rootView) {
-        mToolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        Toolbar mToolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
 
         ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
@@ -63,7 +61,7 @@ public class HomeFragment extends DeviewFragment {
     }
 
     private void initFragmentPager(View rootView) {
-        mPager = (ViewPager) rootView.findViewById(R.id.content_pager);
+        ViewPager mPager = (ViewPager) rootView.findViewById(R.id.content_pager);
         PagerFragmentAdapter adpater = new PagerFragmentAdapter(
                 getChildFragmentManager(), getActivity());
         mPager.setAdapter(adpater);

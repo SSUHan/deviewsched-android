@@ -26,7 +26,6 @@ import com.gdgssu.android_deviewsched.ui.home.HomeFragment;
 public class MainActivity extends AppCompatActivity implements DeviewFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
-    private NavigationView navigationView;
 
     private ImageView avatarImage;
     private TextView nameText;
@@ -48,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
     private void initNavigationView() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         if (navigationView != null)
             setupDrawerContent(navigationView);
@@ -84,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
 
                         break;
                     case R.id.nav_setting:
-                        startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                        showSetting();
 
                         break;
                 }
@@ -141,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
     }
 
     public void showSetting(){
+        startActivity(new Intent(MainActivity.this, SettingActivity.class));
 
         mDrawerLayout.closeDrawers();
     }
