@@ -1,6 +1,7 @@
 package com.gdgssu.android_deviewsched.ui;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -10,11 +11,9 @@ import android.view.ViewGroup;
 
 import com.gdgssu.android_deviewsched.R;
 
-/**
- * Created by flashgugu on 15. 7. 20.
- */
 public class HomeFragment extends DeviewFragment {
     private Toolbar mToolbar;
+    private ViewPager mPager;
 
     private static final String APP_NAME_KEY = "APP_NANE";
     private CharSequence appName;
@@ -48,17 +47,24 @@ public class HomeFragment extends DeviewFragment {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
         initToolbar(rootView);
+        initFragmentPager(rootView);
 
         return rootView;
     }
 
     private void initToolbar(View rootView) {
-
         mToolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
 
-        final ActionBar ab = ((AppCompatActivity)getActivity()).getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
-        ab.setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void initFragmentPager(View rootView) {
+        mPager = (ViewPager) rootView.findViewById(R.id.content_pager);
+        PagerFragmentAdapter adpater = new PagerFragmentAdapter(
+                getChildFragmentManager(), getActivity());
+        mPager.setAdapter(adpater);
     }
 }
