@@ -1,9 +1,10 @@
 package com.gdgssu.android_deviewsched.ui.findfriends;
 
-import android.support.v7.widget.RecyclerView;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -15,74 +16,52 @@ import com.gdgssu.android_deviewsched.util.GlideCircleTransform;
 
 import java.util.ArrayList;
 
-public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.ViewHolder> {
+public class FindFriendsAdapter extends BaseAdapter {
 
-    private ArrayList<FindFriendsItem> findFriendsItems;
-    private final OnItemClickListener mOnItemClickListener;
+    private Context mContext;
 
-    public FindFriendsAdapter(ArrayList<FindFriendsItem> findFriendsItems, OnItemClickListener listener) {
-        this.findFriendsItems = findFriendsItems;
-        mOnItemClickListener = listener;
+    private ArrayList<FindFriendsItem> items;
+    private LayoutInflater mInflater;
+
+    public FindFriendsAdapter(ArrayList<FindFriendsItem> findFriendsItems) {
+        this.mContext = DeviewSchedApplication.GLOBAL_CONTEXT;
+        this.items = findFriendsItems;
+        this.mInflater = (LayoutInflater.from(this.mContext));
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.list_findfriends_item, parent, false);
-
-        final ViewHolder holder = new ViewHolder(view);
-
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mOnItemClickListener != null) {
-                    mOnItemClickListener.onItemClick(v);
-                }
-            }
-        });
-
-        return holder;
+    public int getCount() {
+        return items.size();
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-
-//        ImageView avatarImage = holder.avatarImage;
-//        DeviewTextView userName = holder.userName;
-
-        FindFriendsItem item = findFriendsItems.get(position);
-
-//        Glide.with(DeviewSchedApplication.GLOBAL_CONTEXT)
-//                .load(item.imgURL)
-//                .transform(new GlideCircleTransform(DeviewSchedApplication.GLOBAL_CONTEXT))
-//                .into(avatarImage);
-
-//        userName.setText(item.uesrname);
-
+    public Object getItem(int position) {
+        return items.get(position);
     }
 
     @Override
-    public int getItemCount() {
-        return findFriendsItems.size();
+    public long getItemId(int position) {
+        return position;
     }
 
-    public static interface OnItemClickListener {
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
 
-        public void onItemClick(View view);
-    }
+        ImageView avatarView = null;
+        DeviewTextView userNameView = null;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+        FindFriendsItem item = items.get(position);
 
-//        private final ImageView avatarImage;
-//        private final DeviewTextView titleText;
+        if (convertView==null){
+            convertView = mInflater.inflate(R.layout.list_findfriends_item, null);
 
+            Glide.with(mContext)
+                    .load(item.getImgURL())
+                    .transform(new GlideCircleTransform(mContext))
+                    .into(avatarView);
 
-        public ViewHolder(View v) {
-            super(v);
-
-//            avatarImage = (ImageView) v.findViewById(R.id.list_board_item_avatar);
-//            titleText = (DeviewTextView) v.findViewById(R.id.list_board_item_title);
+            userNameView.setText(item.getUserName());
         }
+        return convertView;
     }
 }

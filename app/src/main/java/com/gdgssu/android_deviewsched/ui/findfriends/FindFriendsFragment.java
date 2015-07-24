@@ -4,18 +4,15 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.gdgssu.android_deviewsched.R;
 import com.gdgssu.android_deviewsched.model.FindFriendsItem;
 import com.gdgssu.android_deviewsched.ui.DeviewFragment;
-import com.gdgssu.android_deviewsched.ui.particleview.DividerItemDecoration;
 
 import java.util.ArrayList;
 
@@ -61,29 +58,17 @@ public class FindFriendsFragment extends DeviewFragment implements SwipeRefreshL
         return rootView;
     }
 
-    private void initList(View rootView) {
-        RecyclerView mRecyclerView = (RecyclerView)rootView.findViewById(R.id.recyclerview);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), null));
-
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(manager);
-
-        FindFriendsAdapter adapter = new FindFriendsAdapter(findFriendsItems,
-                new FindFriendsAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view) {
-                        //Todo 친구 목록중 아이템 하나를 눌렀을때의 액션 구현
-                    }
-                });
-        
-        mRecyclerView.setAdapter(adapter);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-    }
-
     private void initSwipeRefreshLayout(View rootView) {
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mSwipeRefreshLayout.setColorSchemeColors(Color.RED, Color.BLUE, Color.BLACK);
+    }
+
+    private void initList(View rootView) {
+
+        ListView mListView = (ListView)rootView.findViewById(R.id.listview);
+        FindFriendsAdapter adapter = new FindFriendsAdapter(findFriendsItems);
+        mListView.setAdapter(adapter);
     }
 
     @Override
