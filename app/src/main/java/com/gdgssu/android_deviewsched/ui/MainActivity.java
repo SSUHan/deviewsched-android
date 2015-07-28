@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
 
         fragmentManager = getSupportFragmentManager();
 
+        //new line
         initNavigationView();
         showHome();
     }
