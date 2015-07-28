@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions{
+        exclude 'LICENSE'
+        exclude 'NOTICE'
+    }
 }
 
 repositories{
@@ -35,8 +40,8 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3'
     compile 'com.github.bumptech.glide:glide:3.4.0'
     compile 'com.mcxiaoke.volley:library:1.0.17'
-    compile 'com.navercorp.volleyextensions:parent:2.0.1'
+    compile 'com.navercorp.volleyextensions:volleyer:2.0.1'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.2.0'
 
     compile 'com.facebook.android:facebook-android-sdk:4.0.0'
-
 }
