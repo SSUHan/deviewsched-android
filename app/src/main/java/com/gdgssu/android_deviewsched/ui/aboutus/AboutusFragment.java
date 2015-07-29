@@ -17,13 +17,6 @@ public class AboutusFragment extends DeviewFragment {
     // TODO: Rename and change types of parameters
     private CharSequence title;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param title Title of Toolbar.
-     * @return A new instance of fragment AllScheFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static AboutusFragment newInstance(CharSequence title) {
         AboutusFragment fragment = new AboutusFragment();

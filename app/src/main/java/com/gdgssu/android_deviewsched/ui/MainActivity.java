@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.facebook.appevents.AppEventsLogger;
 import com.gdgssu.android_deviewsched.R;
 import com.gdgssu.android_deviewsched.ui.aboutus.AboutusFragment;
-import com.gdgssu.android_deviewsched.ui.allsche.AllScheFragment;
+import com.gdgssu.android_deviewsched.ui.sche.ScheFragment;
 import com.gdgssu.android_deviewsched.ui.deviewstory.DeviewStoryFragment;
 import com.gdgssu.android_deviewsched.ui.findfriends.FindFriendsFragment;
 import com.gdgssu.android_deviewsched.ui.mysche.MyScheFragment;
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
     }
 
     public void showAllSche(CharSequence title){
-        Fragment allScheFragment = AllScheFragment.newInstance(title);
+        Fragment allScheFragment = ScheFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, allScheFragment);
         fragmentTransaction.addToBackStack(null).commit();
