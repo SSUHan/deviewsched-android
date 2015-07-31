@@ -17,7 +17,8 @@ import android.widget.TextView;
 
 import com.facebook.appevents.AppEventsLogger;
 import com.gdgssu.android_deviewsched.R;
-import com.gdgssu.android_deviewsched.ui.allsche.AllScheFragment;
+import com.gdgssu.android_deviewsched.ui.aboutus.AboutusFragment;
+import com.gdgssu.android_deviewsched.ui.sche.ScheFragment;
 import com.gdgssu.android_deviewsched.ui.deviewstory.DeviewStoryFragment;
 import com.gdgssu.android_deviewsched.ui.findfriends.FindFriendsFragment;
 import com.gdgssu.android_deviewsched.ui.mysche.MyScheFragment;
@@ -88,6 +89,10 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
                         showSetting();
 
                         break;
+                    case R.id.nav_aboutus:
+                        showAboutus(getResources().getText(R.string.aboutus));
+
+                        break;
                 }
                 menuItem.setChecked(true);
                 mDrawerLayout.closeDrawers();
@@ -106,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
     }
 
     public void showAllSche(CharSequence title){
-        Fragment allScheFragment = AllScheFragment.newInstance(title);
+        Fragment allScheFragment = ScheFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, allScheFragment);
         fragmentTransaction.addToBackStack(null).commit();
@@ -144,6 +149,14 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
     public void showSetting(){
         startActivity(new Intent(MainActivity.this, SettingActivity.class));
 
+        mDrawerLayout.closeDrawers();
+    }
+
+    public void showAboutus(CharSequence title){
+        Fragment aboutusFragment = AboutusFragment.newInstance(title);
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.content_container, aboutusFragment);
+        fragmentTransaction.addToBackStack(null).commit();
         mDrawerLayout.closeDrawers();
     }
 

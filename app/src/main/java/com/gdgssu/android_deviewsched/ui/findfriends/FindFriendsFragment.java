@@ -1,29 +1,30 @@
 package com.gdgssu.android_deviewsched.ui.findfriends;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.gdgssu.android_deviewsched.R;
+import com.gdgssu.android_deviewsched.model.FindFriendsItem;
 import com.gdgssu.android_deviewsched.ui.DeviewFragment;
 
-public class FindFriendsFragment extends DeviewFragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String KEY_TITLE = "title";
+import java.util.ArrayList;
 
-    // TODO: Rename and change types of parameters
+public class FindFriendsFragment extends DeviewFragment implements SwipeRefreshLayout.OnRefreshListener {
+
+    private static final String KEY_TITLE = "title";
     private CharSequence title;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param title Title of Toolbar.
-     * @return A new instance of fragment AllScheFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+    private ArrayList<FindFriendsItem> findFriendsItems;
+
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+
     public static FindFriendsFragment newInstance(CharSequence title) {
         FindFriendsFragment fragment = new FindFriendsFragment();
         Bundle args = new Bundle();
@@ -33,7 +34,7 @@ public class FindFriendsFragment extends DeviewFragment {
     }
 
     public FindFriendsFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -48,7 +49,37 @@ public class FindFriendsFragment extends DeviewFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_find_friends, container, false);
+
+        View rootView = inflater.inflate(R.layout.fragment_find_friends, container, false);
+
+        initSwipeRefreshLayout(rootView);
+        initList(rootView);
+
+        return rootView;
+    }
+
+    private void initSwipeRefreshLayout(View rootView) {
+        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeColors(Color.RED, Color.BLUE, Color.BLACK);
+    }
+
+    private void initList(View rootView) {
+
+        ListView mListView = (ListView)rootView.findViewById(R.id.listview);
+        FindFriendsAdapter adapter = new FindFriendsAdapter(findFriendsItems);
+        mListView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onRefresh() {
+        Toast.makeText(getActivity(), "DeviewRefresh", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        }, 3000);
     }
 }

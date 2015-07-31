@@ -1,4 +1,4 @@
-package com.gdgssu.android_deviewsched.util;
+package com.gdgssu.android_deviewsched.ui.particleview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
