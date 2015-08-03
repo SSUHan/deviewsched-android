@@ -21,7 +21,7 @@ import com.gdgssu.android_deviewsched.ui.aboutus.AboutusFragment;
 import com.gdgssu.android_deviewsched.ui.sche.ScheFragment;
 import com.gdgssu.android_deviewsched.ui.deviewstory.DeviewStoryFragment;
 import com.gdgssu.android_deviewsched.ui.findfriends.FindFriendsFragment;
-import com.gdgssu.android_deviewsched.ui.mysche.MyScheFragment;
+import com.gdgssu.android_deviewsched.ui.sche.ScheFragment;
 import com.gdgssu.android_deviewsched.ui.setting.SettingActivity;
 import com.gdgssu.android_deviewsched.ui.home.HomeFragment;
 
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
     }
 
     public void showMySche(CharSequence title){
-        Fragment myScheFragment = MyScheFragment.newInstance(title);
+        Fragment myScheFragment = ScheFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, myScheFragment);
         fragmentTransaction.addToBackStack(null).commit();

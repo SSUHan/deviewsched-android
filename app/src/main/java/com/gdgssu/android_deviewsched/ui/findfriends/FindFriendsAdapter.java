@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.gdgssu.android_deviewsched.DeviewSchedApplication;
 import com.gdgssu.android_deviewsched.R;
-import com.gdgssu.android_deviewsched.model.FindFriendsItem;
+import com.gdgssu.android_deviewsched.model.FindFriend;
 import com.gdgssu.android_deviewsched.ui.particleview.DeviewTextView;
 import com.gdgssu.android_deviewsched.util.GlideCircleTransform;
 
@@ -20,12 +20,12 @@ public class FindFriendsAdapter extends BaseAdapter {
 
     private Context mContext;
 
-    private ArrayList<FindFriendsItem> items;
+    private ArrayList<FindFriend> items;
     private LayoutInflater mInflater;
 
-    public FindFriendsAdapter(ArrayList<FindFriendsItem> findFriendsItems) {
+    public FindFriendsAdapter(ArrayList<FindFriend> findFriendses) {
         this.mContext = DeviewSchedApplication.GLOBAL_CONTEXT;
-        this.items = findFriendsItems;
+        this.items = findFriendses;
         this.mInflater = (LayoutInflater.from(this.mContext));
     }
 
@@ -50,7 +50,7 @@ public class FindFriendsAdapter extends BaseAdapter {
         ImageView avatarView = null;
         DeviewTextView userNameView = null;
 
-        FindFriendsItem item = items.get(position);
+        FindFriend item = items.get(position);
 
         if (convertView==null){
             convertView = mInflater.inflate(R.layout.list_findfriends_item, null);

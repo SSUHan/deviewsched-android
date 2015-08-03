@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.gdgssu.android_deviewsched.R;
-import com.gdgssu.android_deviewsched.model.FindFriendsItem;
+import com.gdgssu.android_deviewsched.model.FindFriend;
 import com.gdgssu.android_deviewsched.ui.DeviewFragment;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class FindFriendsFragment extends DeviewFragment implements SwipeRefreshL
     private static final String KEY_TITLE = "title";
     private CharSequence title;
 
-    private ArrayList<FindFriendsItem> findFriendsItems;
+    private ArrayList<FindFriend> findFriendses;
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -67,7 +67,7 @@ public class FindFriendsFragment extends DeviewFragment implements SwipeRefreshL
     private void initList(View rootView) {
 
         ListView mListView = (ListView)rootView.findViewById(R.id.listview);
-        FindFriendsAdapter adapter = new FindFriendsAdapter(findFriendsItems);
+        FindFriendsAdapter adapter = new FindFriendsAdapter(findFriendses);
         mListView.setAdapter(adapter);
     }
 
