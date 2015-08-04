@@ -9,8 +9,6 @@ import android.widget.ListView;
 import com.gdgssu.android_deviewsched.R;
 import com.gdgssu.android_deviewsched.ui.DeviewFragment;
 
-import java.util.ArrayList;
-
 public class SchePagerFragment extends DeviewFragment {
 
 
@@ -48,5 +46,4 @@ public class SchePagerFragment extends DeviewFragment {
 
         listview.setAdapter(adapter);
     }
-
 }

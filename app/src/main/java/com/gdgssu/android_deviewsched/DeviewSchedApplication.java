@@ -27,14 +27,26 @@ public class DeviewSchedApplication extends Application{
         super.onCreate();
 
         GLOBAL_CONTEXT = getApplicationContext();
+        FacebookSdk.sdkInitialize(GLOBAL_CONTEXT);
+        setLoginState();
+        initRequestQueue();
+        getAllScheData();
+    }
+
+    public void setLoginState() {
         LoginPreferenceHelper prefHelper = new LoginPreferenceHelper(GLOBAL_CONTEXT);
         LOGIN_STATE = prefHelper.getPrefLoginValue(LoginPreferenceHelper.PREF_LOGIN_STATE, false);
+    }
 
-        FacebookSdk.sdkInitialize(GLOBAL_CONTEXT);
-
+    private void initRequestQueue() {
         deviewRequestQueue = DefaultRequestQueueFactory.create(GLOBAL_CONTEXT);
         deviewRequestQueue.start();
+    }
 
+    private void getAllScheData() {
+        /**
+         * Todo 이곳에서 모든 전체스케쥴의 데이터를 가져오는 일을 해야함.
+         */
         volleyer(deviewRequestQueue)
                 .get(HOST_URL + "2014/list")
                 .withListener(new Response.Listener<String>() {
