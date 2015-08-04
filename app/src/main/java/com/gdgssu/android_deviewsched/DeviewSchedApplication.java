@@ -10,6 +10,8 @@ import com.android.volley.VolleyError;
 import com.facebook.FacebookSdk;
 import com.gdgssu.android_deviewsched.helper.LoginPreferenceHelper;
 import static com.navercorp.volleyextensions.volleyer.Volleyer.*;
+
+import com.gdgssu.android_deviewsched.model.AllScheItems;
 import com.navercorp.volleyextensions.volleyer.factory.DefaultRequestQueueFactory;
 
 public class DeviewSchedApplication extends Application{
@@ -49,10 +51,11 @@ public class DeviewSchedApplication extends Application{
          */
         volleyer(deviewRequestQueue)
                 .get(HOST_URL + "2014/list")
-                .withListener(new Response.Listener<String>() {
+                .withTargetClass(AllScheItems.class)
+                .withListener(new Response.Listener<AllScheItems>() {
                     @Override
-                    public void onResponse(String response) {
-                        Log.d(TAG, response);
+                    public void onResponse(AllScheItems items) {
+
                     }
                 })
                 .withErrorListener(new Response.ErrorListener() {

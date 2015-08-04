@@ -21,6 +21,8 @@ android {
     packagingOptions{
         exclude 'LICENSE'
         exclude 'NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
     }
 }
 
