@@ -8,6 +8,6 @@ public class AllScheItems {
 
     public ArrayList<Day> days;
 
-    public static ArrayList<Day> result;
+    public static AllScheItems result;
 
 }

@@ -1,5 +1,6 @@
 package com.gdgssu.android_deviewsched.ui.sche;
 
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.gdgssu.android_deviewsched.R;
-import com.gdgssu.android_deviewsched.ui.DeviewFragment;
 
-public class SchePagerFragment extends DeviewFragment {
+public class SchePagerFragment extends Fragment {
 
 
     public static SchePagerFragment newInstance() {

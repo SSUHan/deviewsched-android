@@ -50,12 +50,12 @@ public class DeviewSchedApplication extends Application{
          * Todo 이곳에서 모든 전체스케쥴의 데이터를 가져오는 일을 해야함.
          */
         volleyer(deviewRequestQueue)
-                .get(HOST_URL + "2014/list")
+                .get(HOST_URL + "mock/allsche.json")
                 .withTargetClass(AllScheItems.class)
                 .withListener(new Response.Listener<AllScheItems>() {
                     @Override
                     public void onResponse(AllScheItems items) {
-
+                        AllScheItems.result = items;
                     }
                 })
                 .withErrorListener(new Response.ErrorListener() {
