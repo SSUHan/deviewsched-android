@@ -33,13 +33,13 @@ public class SchePagerFragmentAdapter extends FragmentPagerAdapter {
 
         switch (position){
             case 0:
-                return SchePagerFragment.newInstance();
+                return SchePagerFragment.newInstance(AllScheItems.result.days.get(0).tracks.get(position));
             case 1:
-                return SchePagerFragment.newInstance();
+                return SchePagerFragment.newInstance(AllScheItems.result.days.get(0).tracks.get(position));
             case 2:
-                return SchePagerFragment.newInstance();
+                return SchePagerFragment.newInstance(AllScheItems.result.days.get(0).tracks.get(position));
             case 3:
-                return SchePagerFragment.newInstance();
+                return SchePagerFragment.newInstance(AllScheItems.result.days.get(0).tracks.get(position));
             default:
                 throw new RuntimeException("There is not case");
         }
