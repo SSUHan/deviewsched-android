@@ -22,11 +22,22 @@ import java.util.ArrayList;
  */
 public class SchePagerAdapter extends BaseAdapter {
 
-    private LayoutInflater inflater;
+    private String[] sessionTimes = new String[]{
+            "10:00~10:45",
+            "11:00~11:45",
+            "12:00~12:45",
+            "13:00~13:45",
+            "14:00~14:45",
+            "15:00~15:45",
+            "16:00~16:45"};
+    private LayoutInflater mInflater;
     private ArrayList<Session> sessionItems;
 
-    public SchePagerAdapter(Track track) {
+    public SchePagerAdapter(Track track, Context context) {
+
         this.sessionItems = track.sessions;
+        this.mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
     }
 
     @Override
@@ -46,57 +57,42 @@ public class SchePagerAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-//
-//        ViewHolder holder;
-//
-//        if (convertView==null){
-//            holder = new ViewHolder();
-//
-//            inflater = (LayoutInflater)DeviewSchedApplication.GLOBAL_CONTEXT.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            convertView = inflater.inflate(R.layout.item_day_sche_list, null);
-//
-//            holder.mSpeakerImg = (ImageView)convertView.findViewById(R.id.item_sche_list_speaker_img);
-//            holder.mSpeakerName = (TextView)convertView.findViewById(R.id.item_sche_list_speaker_name);
-//            holder.mSessionName = (TextView)convertView.findViewById(R.id.item_sche_list_session_title);
-//
-//            convertView.setTag(holder);
-//        }else{
-//            holder = (ViewHolder)convertView.getTag();
-//        }
-//
-//        Glide.with(DeviewSchedApplication.GLOBAL_CONTEXT)
-//                .load(sessionItems.get(position).speakers.get(0).img)
-//                .transform(new GlideCircleTransform(DeviewSchedApplication.GLOBAL_CONTEXT))
-//                .into(holder.mSpeakerImg);
-//
-//        holder.mSpeakerName.setText(sessionItems.get(position).speakers.get(0).name);
-//        holder.mSessionName.setText(sessionItems.get(position).session_title);
+
+        ViewHolder holder;
 
         if (convertView==null){
-            LayoutInflater inflater = (LayoutInflater)DeviewSchedApplication.GLOBAL_CONTEXT.getSystemService(DeviewSchedApplication.GLOBAL_CONTEXT.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.item_session_sche_list, parent, false);
+            convertView = mInflater.inflate(R.layout.item_session_sche_list, parent, false);
 
-            ImageView speakerImg = (ImageView)convertView.findViewById(R.id.item_sche_list_speaker_img);
-            Glide.with(DeviewSchedApplication.GLOBAL_CONTEXT)
+            holder = new ViewHolder();
+            holder.sessionTime = (TextView)convertView.findViewById(R.id.item_sche_list_time);
+            holder.speakerImg = (ImageView)convertView.findViewById(R.id.item_sche_list_speaker_img);
+            holder.speakerName = (TextView)convertView.findViewById(R.id.item_sche_list_speaker_name);
+            holder.sessionName = (TextView)convertView.findViewById(R.id.item_sche_list_session_title);
+
+            convertView.setTag(holder);
+
+        }else{
+            holder = (ViewHolder)convertView.getTag();
+        }
+
+        holder.sessionTime.setText(sessionTimes[position]);
+
+        Glide.with(DeviewSchedApplication.GLOBAL_CONTEXT)
                 .load(sessionItems.get(position).speakers.get(0).img)
                 .transform(new GlideCircleTransform(DeviewSchedApplication.GLOBAL_CONTEXT))
-                    .fitCenter()
-                    .override(40,40)
-                .into(speakerImg);
+                .override(54, 54)
+                .into(holder.speakerImg);
 
-            TextView speakerName = (TextView)convertView.findViewById(R.id.item_sche_list_speaker_name);
-            speakerName.setText(sessionItems.get(position).speakers.get(0).name);
-            TextView sessionName = (TextView)convertView.findViewById(R.id.item_sche_list_session_title);
-            sessionName.setText(sessionItems.get(position).session_title);
-
-        }
+        holder.speakerName.setText(sessionItems.get(position).speakers.get(0).name);
+        holder.sessionName.setText(sessionItems.get(position).session_title);
 
         return convertView;
     }
 
-    public class ViewHolder{
-        public ImageView mSpeakerImg;
-        public TextView mSpeakerName;
-        public TextView mSessionName;
+    public static class ViewHolder{
+        public TextView sessionTime;
+        public ImageView speakerImg;
+        public TextView speakerName;
+        public TextView sessionName;
     }
 }

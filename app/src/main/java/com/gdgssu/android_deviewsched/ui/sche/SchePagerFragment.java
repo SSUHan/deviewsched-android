@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.gdgssu.android_deviewsched.DeviewSchedApplication;
 import com.gdgssu.android_deviewsched.R;
+import com.gdgssu.android_deviewsched.model.AllScheItems;
 import com.gdgssu.android_deviewsched.model.Track;
 
 public class SchePagerFragment extends Fragment {
@@ -17,11 +19,8 @@ public class SchePagerFragment extends Fragment {
     private Track mTrackData;
 
 
-    public static SchePagerFragment newInstance(Track track) {
+    public static SchePagerFragment newInstance() {
         SchePagerFragment fragment = new SchePagerFragment();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(TAG, track);
-        fragment.setArguments(bundle);
 
         return fragment;
     }
@@ -53,8 +52,10 @@ public class SchePagerFragment extends Fragment {
     private void initScheListView(View rootView) {
         ListView listview = (ListView) rootView.findViewById(R.id.fragment_sche_pager_list);
 
-        SchePagerAdapter adapter = new SchePagerAdapter(mTrackData);
-        //Todo 인자로 listview의 데이터에 해당하는 객체 리스트를 전달해야함.
+        /**
+         * Todo 이부분에서 애플리케이션이 매우 느려지고있는 상황이 발생하고있음. 어떤 이유때문인지 확인해봐야함.
+         */
+        SchePagerAdapter adapter = new SchePagerAdapter(AllScheItems.result.days.get(0).tracks.get(0), DeviewSchedApplication.GLOBAL_CONTEXT);
 
         listview.setAdapter(adapter);
     }
