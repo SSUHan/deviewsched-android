@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
 
+import com.gdgssu.android_deviewsched.model.AllScheItems;
+
 import java.util.ArrayList;
 
 public class SchePagerFragmentAdapter extends FragmentPagerAdapter {
@@ -31,13 +33,13 @@ public class SchePagerFragmentAdapter extends FragmentPagerAdapter {
 
         switch (position){
             case 0:
-                return SchePagerFragment.newInstance();
+                return SchePagerFragment.newInstance(AllScheItems.result.days.get(0).tracks.get(0));
             case 1:
-                return SchePagerFragment.newInstance();
+                return SchePagerFragment.newInstance(AllScheItems.result.days.get(0).tracks.get(1));
             case 2:
-                return SchePagerFragment.newInstance();
+                return SchePagerFragment.newInstance(AllScheItems.result.days.get(0).tracks.get(2));
             case 3:
-                return SchePagerFragment.newInstance();
+                return SchePagerFragment.newInstance(AllScheItems.result.days.get(0).tracks.get(3));
             default:
                 throw new RuntimeException("There is not case");
         }
