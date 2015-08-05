@@ -35,7 +35,8 @@ public class FindFriendsFragment extends DeviewFragment {
     private String[] mStrings = {"Joun","Bob","Chaen","Davide","Elem"};
 
     private PullToRefreshListView mPullRefreshListView;
-    private ArrayAdapter<String> mAdapter;
+   // private ArrayAdapter<String> mAdapter;
+    private FindFriendsAdapter ffAdapter;
 
     public static FindFriendsFragment newInstance(CharSequence title) {
         FindFriendsFragment fragment = new FindFriendsFragment();
@@ -102,16 +103,19 @@ public class FindFriendsFragment extends DeviewFragment {
         FriendList = new LinkedList<String>();
         FriendList.addAll(Arrays.asList(mStrings));
 
-        mAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,FriendList);
+        // mAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,FriendList);
 
-        actualListView.setAdapter(mAdapter);
+        ffAdapter = new FindFriendsAdapter(FriendList);
 
-        actualListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(), "pos:" + position + " id:" + id, Toast.LENGTH_LONG).show();
-            }
-        });
+
+        actualListView.setAdapter(ffAdapter);
+
+//        actualListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Toast.makeText(getActivity(), "pos:" + position + " id:" + id, Toast.LENGTH_LONG).show();
+//            }
+//        });
     }
 
     private class GetDataTask extends AsyncTask<Void, Void, String[]> {
@@ -130,9 +134,9 @@ public class FindFriendsFragment extends DeviewFragment {
         protected void onPostExecute(String[] result) {
 
             FriendList.add(3,"add after pos 3");
-            //customAdapter.notifyDataSetChanged();
+            ffAdapter.notifyDataSetChanged();
 
-            mAdapter.notifyDataSetChanged();
+
 
             // Call onRefreshComplete when the list has been refreshed.
             mPullRefreshListView.onRefreshComplete();

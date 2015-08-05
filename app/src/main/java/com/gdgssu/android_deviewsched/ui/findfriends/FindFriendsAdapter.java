@@ -5,7 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.gdgssu.android_deviewsched.DeviewSchedApplication;
@@ -15,28 +18,32 @@ import com.gdgssu.android_deviewsched.ui.particleview.DeviewTextView;
 import com.gdgssu.android_deviewsched.util.GlideCircleTransform;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class FindFriendsAdapter extends BaseAdapter {
 
     private Context mContext;
-
-    private ArrayList<FindFriend> items;
     private LayoutInflater mInflater;
 
-    public FindFriendsAdapter(ArrayList<FindFriend> findFriendses) {
+    private LinkedList<String> m_List;
+
+    public FindFriendsAdapter(){
+        m_List = new LinkedList<String>();
+    }
+    public FindFriendsAdapter(LinkedList<String> list){
         this.mContext = DeviewSchedApplication.GLOBAL_CONTEXT;
-        this.items = findFriendses;
+        m_List = list;
         this.mInflater = (LayoutInflater.from(this.mContext));
     }
 
     @Override
     public int getCount() {
-        return items.size();
+        return m_List.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return items.get(position);
+        return m_List.get(position);
     }
 
     @Override
@@ -50,18 +57,36 @@ public class FindFriendsAdapter extends BaseAdapter {
         ImageView avatarView = null;
         DeviewTextView userNameView = null;
 
-        FindFriend item = items.get(position);
+        final int pos = position;
+        final Context context = parent.getContext();
 
-        if (convertView==null){
-            convertView = mInflater.inflate(R.layout.list_findfriends_item, null);
+        if(convertView == null){
+            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.item_findfriend,parent,false);
 
-            Glide.with(mContext)
-                    .load(item.getImgURL())
-                    .transform(new GlideCircleTransform(mContext))
-                    .into(avatarView);
+            // TextView item_text = (TextView)convertView.findViewById(R.id.item_text);
+            // item_text.setText(m_List.get(position));
 
-            userNameView.setText(item.getUserName());
+            Button item_button = (Button)convertView.findViewById(R.id.item_button);
+            item_button.setText("Click");
+            item_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "button click contents" + m_List.get(pos) + " pos:" + pos, Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context,"item click contents:"+m_List.get(pos)+" pos"+pos,Toast.LENGTH_LONG).show();
+                }
+            });
+
         }
+        TextView item_text = (TextView)convertView.findViewById(R.id.item_text);
+        item_text.setText(m_List.get(position));
+
         return convertView;
     }
 }
