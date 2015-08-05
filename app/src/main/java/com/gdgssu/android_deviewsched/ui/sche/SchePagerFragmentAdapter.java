@@ -1,8 +1,10 @@
 package com.gdgssu.android_deviewsched.ui.sche;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -21,6 +23,7 @@ public class SchePagerFragmentAdapter extends FragmentPagerAdapter {
         pagerTitles.add("Track2");
         pagerTitles.add("Track3");
         pagerTitles.add("Track4");
+
     }
 
     @Override

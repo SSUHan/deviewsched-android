@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,9 @@ public class ScheFragment extends DeviewFragment {
 
     private static final String KEY_TITLE = "title";
 
-    private ViewPager pager;
+    private Toolbar mToolbar;
+    private ViewPager mPager;
+    private SchePagerFragmentAdapter mAdapter;
     private CharSequence title;
 
     private String TAG = "ScheFragment";
@@ -38,7 +41,7 @@ public class ScheFragment extends DeviewFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            title = getArguments().getString(KEY_TITLE);
+            this.title = getArguments().getString(KEY_TITLE);
         }
     }
 
@@ -57,21 +60,21 @@ public class ScheFragment extends DeviewFragment {
 
     private void initTabLayout(View rootView) {
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.fragment_sche_tabs);
-        tabLayout.setupWithViewPager(pager);
+        tabLayout.setupWithViewPager(mPager);
     }
 
     private void initFragmentPager(View rootView) {
-        pager = (ViewPager) rootView.findViewById(R.id.fragment_sche_content_pager);
-        SchePagerFragmentAdapter adapter = new SchePagerFragmentAdapter(getChildFragmentManager());
+        mPager = (ViewPager) rootView.findViewById(R.id.fragment_sche_content_pager);
+        mAdapter = new SchePagerFragmentAdapter(getChildFragmentManager());
 
-        pager.setAdapter(adapter);
+        mPager.setAdapter(mAdapter);
     }
 
     private void initToolbar(View rootView) {
-        Toolbar mToolbar = (Toolbar) rootView.findViewById(R.id.fragment_sche_toolbar);
+        mToolbar = (Toolbar) rootView.findViewById(R.id.fragment_sche_toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
 
-        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        final ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }

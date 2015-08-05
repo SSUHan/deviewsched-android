@@ -11,6 +11,8 @@ import com.gdgssu.android_deviewsched.R;
 
 public class SchePagerFragment extends Fragment {
 
+    private static final String TAG = "SchePagerFragment";
+
 
     public static SchePagerFragment newInstance() {
         SchePagerFragment fragment = new SchePagerFragment();
@@ -35,7 +37,7 @@ public class SchePagerFragment extends Fragment {
 
         initScheListView(rootView);
 
-        return inflater.inflate(R.layout.fragment_sche_pager, container, false);
+        return rootView;
     }
 
     private void initScheListView(View rootView) {

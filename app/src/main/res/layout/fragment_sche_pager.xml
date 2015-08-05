@@ -3,6 +3,7 @@
     android:id="@+id/fragment_sche_pager_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.gdgssu.android_deviewsched.ui.sche.SchePagerFragment">
 
 </ListView>
