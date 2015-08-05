@@ -10,10 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.gdgssu.android_deviewsched.DeviewSchedApplication;
 import com.gdgssu.android_deviewsched.R;
 import com.gdgssu.android_deviewsched.ui.DeviewFragment;
-import com.gdgssu.android_deviewsched.ui.home.PagerFragmentAdapter;
 
 public class ScheFragment extends DeviewFragment {
 
@@ -58,20 +56,19 @@ public class ScheFragment extends DeviewFragment {
     }
 
     private void initTabLayout(View rootView) {
-        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.sched_tabs);
+        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.fragment_sche_tabs);
         tabLayout.setupWithViewPager(pager);
     }
 
     private void initFragmentPager(View rootView) {
-        pager = (ViewPager) rootView.findViewById(R.id.content_pager);
-//        final PagerFragmentAdapter adpater = new PagerFragmentAdapter(
-//                getChildFragmentManager(), Home.homeObject.homeHomePagerListItems, DeviewSchedApplication.GLOBAL_CONTEXT);
-        //Todo 각 Pager에 뿌려질 데이터들의 ArrayList 묶음 객체를 두번째 인자에 던져야함.
-//        pager.setAdapter(adpater);
+        pager = (ViewPager) rootView.findViewById(R.id.fragment_sche_content_pager);
+        SchePagerFragmentAdapter adapter = new SchePagerFragmentAdapter(getChildFragmentManager());
+
+        pager.setAdapter(adapter);
     }
 
     private void initToolbar(View rootView) {
-        Toolbar mToolbar = (Toolbar) rootView.findViewById(R.id.sched_toolbar);
+        Toolbar mToolbar = (Toolbar) rootView.findViewById(R.id.fragment_sche_toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
 
         ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();

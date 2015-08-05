@@ -1,5 +1,6 @@
 package com.gdgssu.android_deviewsched.ui.sche;
 
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,11 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.gdgssu.android_deviewsched.R;
-import com.gdgssu.android_deviewsched.ui.DeviewFragment;
 
-import java.util.ArrayList;
-
-public class SchePagerFragment extends DeviewFragment {
+public class SchePagerFragment extends Fragment {
 
 
     public static SchePagerFragment newInstance() {
@@ -41,12 +39,11 @@ public class SchePagerFragment extends DeviewFragment {
     }
 
     private void initScheListView(View rootView) {
-        ListView listview = (ListView) rootView.findViewById(R.id.sche_pager_list);
+        ListView listview = (ListView) rootView.findViewById(R.id.fragment_sche_pager_list);
 
         SchePagerAdapter adapter = new SchePagerAdapter();
         //Todo 인자로 listview의 데이터에 해당하는 객체 리스트를 전달해야함.
 
         listview.setAdapter(adapter);
     }
-
 }
