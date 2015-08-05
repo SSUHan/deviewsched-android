@@ -6,22 +6,18 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.gdgssu.android_deviewsched.R;
-import com.gdgssu.android_deviewsched.model.AllScheItems;
 import com.gdgssu.android_deviewsched.ui.DeviewFragment;
 
 public class ScheFragment extends DeviewFragment {
 
     private static final String KEY_TITLE = "title";
 
-    private Toolbar mToolbar;
     private ViewPager mPager;
-    private SchePagerFragmentAdapter mAdapter;
     private CharSequence title;
 
     private String TAG = "ScheFragment";
@@ -66,16 +62,16 @@ public class ScheFragment extends DeviewFragment {
 
     private void initFragmentPager(View rootView) {
         mPager = (ViewPager) rootView.findViewById(R.id.fragment_sche_content_pager);
-        mAdapter = new SchePagerFragmentAdapter(getChildFragmentManager());
+        SchePagerFragmentAdapter mAdapter = new SchePagerFragmentAdapter(getChildFragmentManager());
 
         mPager.setAdapter(mAdapter);
     }
 
     private void initToolbar(View rootView) {
-        mToolbar = (Toolbar) rootView.findViewById(R.id.fragment_sche_toolbar);
+        Toolbar mToolbar = (Toolbar) rootView.findViewById(R.id.fragment_sche_toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
 
-        final ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }

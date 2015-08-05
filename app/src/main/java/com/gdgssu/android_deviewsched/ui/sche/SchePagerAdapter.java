@@ -29,7 +29,8 @@ public class SchePagerAdapter extends BaseAdapter {
             "13:00~13:45",
             "14:00~14:45",
             "15:00~15:45",
-            "16:00~16:45"};
+            "16:00~16:45"
+    };
     private LayoutInflater mInflater;
     private ArrayList<Session> sessionItems;
 
@@ -80,7 +81,7 @@ public class SchePagerAdapter extends BaseAdapter {
         Glide.with(DeviewSchedApplication.GLOBAL_CONTEXT)
                 .load(sessionItems.get(position).speakers.get(0).img)
                 .transform(new GlideCircleTransform(DeviewSchedApplication.GLOBAL_CONTEXT))
-                .override(54, 54)
+                .override(54, 54) //임의로 결정한 크기임.
                 .into(holder.speakerImg);
 
         holder.speakerName.setText(sessionItems.get(position).speakers.get(0).name);
