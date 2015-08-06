@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/default_white_background"
     tools:context="com.gdgssu.android_deviewsched.ui.sche.ScheFragment">
 
     <android.support.v7.widget.Toolbar
@@ -19,7 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        app:layout_scrollFlags="scroll|enterAlways"
         app:tabIndicatorColor="@color/default_white_background" />
 
     <FrameLayout

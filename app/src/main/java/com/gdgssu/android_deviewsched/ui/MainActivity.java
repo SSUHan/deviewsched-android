@@ -8,8 +8,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.NavigationView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -42,9 +44,17 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
 
         fragmentManager = getSupportFragmentManager();
 
-        //new line
+        initToolbar();
         initNavigationView();
-        showHome();
+    }
+
+    private void initToolbar() {
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void initNavigationView() {
@@ -102,10 +112,13 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
     }
 
     public void showHome(){
-        Fragment homeFragment = HomeFragment.newInstance(getText(R.string.app_name));
-        fragmentTransaction = fragmentManager.beginTransaction();
+
+        /**
+         * Todo Home은 Fragment를 쓰지않고 MainActivity에 직접 나타낼 예정
+         * 네비게이션View에서 Home을 누르면 MainActivity위의 모든 Fragment를 비우는 로직을 작성해야함.
+         */
+
         fragmentManager.popBackStackImmediate();
-        fragmentTransaction.replace(R.id.content_container, homeFragment).commit();
 
         mDrawerLayout.closeDrawers();
     }

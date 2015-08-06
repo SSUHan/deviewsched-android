@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.gdgssu.android_deviewsched.R;
 import com.gdgssu.android_deviewsched.ui.DeviewFragment;
+import com.gdgssu.android_deviewsched.ui.MainActivity;
 
 public class ScheFragment extends DeviewFragment {
 
