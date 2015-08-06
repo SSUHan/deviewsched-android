@@ -15,8 +15,6 @@ import com.gdgssu.android_deviewsched.model.Session;
 import com.gdgssu.android_deviewsched.model.Track;
 import com.gdgssu.android_deviewsched.util.GlideCircleTransform;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 /**
