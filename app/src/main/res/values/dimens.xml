@@ -58,6 +58,8 @@
     <dimen name="material_listitem_paddingleft_72dp">72dp</dimen>
     <dimen name="material_listitem_uppertext_12sp">12sp</dimen>
     <dimen name="material_listitem_lowertext_10sp">10sp</dimen>
+    <dimen name="material_listitem_paddingvertical_20dp">20dp</dimen>
+    <dimen name="material_listitem_paddingright_16dp">16dp</dimen>
 
     <!--login-->
     <dimen name="fragment_signin_margin">10dp</dimen>
@@ -80,4 +82,5 @@
     <dimen name="layout_margin_small">8dp</dimen>
     <dimen name="layout_margin_medium">16dp</dimen>
     <dimen name="layout_margin_large">24dp</dimen>
+
 </resources>

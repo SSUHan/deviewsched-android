@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.gdgssu.android_deviewsched.model.AllScheItems;
+
 import java.util.ArrayList;
 
 public class SchePagerFragmentAdapter extends FragmentPagerAdapter {
@@ -21,6 +23,7 @@ public class SchePagerFragmentAdapter extends FragmentPagerAdapter {
         pagerTitles.add("Track2");
         pagerTitles.add("Track3");
         pagerTitles.add("Track4");
+
     }
 
     @Override
@@ -28,13 +31,13 @@ public class SchePagerFragmentAdapter extends FragmentPagerAdapter {
 
         switch (position){
             case 0:
-                return SchePagerFragment.newInstance();
+                return SchePagerFragment.newInstance(AllScheItems.result.days.get(0).tracks.get(position));
             case 1:
-                return SchePagerFragment.newInstance();
+                return SchePagerFragment.newInstance(AllScheItems.result.days.get(0).tracks.get(position));
             case 2:
-                return SchePagerFragment.newInstance();
+                return SchePagerFragment.newInstance(AllScheItems.result.days.get(0).tracks.get(position));
             case 3:
-                return SchePagerFragment.newInstance();
+                return SchePagerFragment.newInstance(AllScheItems.result.days.get(0).tracks.get(position));
             default:
                 throw new RuntimeException("There is not case");
         }

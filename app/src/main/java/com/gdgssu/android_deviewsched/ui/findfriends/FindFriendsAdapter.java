@@ -10,14 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.gdgssu.android_deviewsched.DeviewSchedApplication;
 import com.gdgssu.android_deviewsched.R;
-import com.gdgssu.android_deviewsched.model.FindFriend;
-import com.gdgssu.android_deviewsched.ui.particleview.DeviewTextView;
-import com.gdgssu.android_deviewsched.util.GlideCircleTransform;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class FindFriendsAdapter extends BaseAdapter {
@@ -55,7 +50,7 @@ public class FindFriendsAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         ImageView avatarView = null;
-        DeviewTextView userNameView = null;
+        TextView userNameView = null;
 
         final int pos = position;
         final Context context = parent.getContext();

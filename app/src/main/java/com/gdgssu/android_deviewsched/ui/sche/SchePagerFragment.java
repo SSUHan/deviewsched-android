@@ -7,13 +7,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.gdgssu.android_deviewsched.DeviewSchedApplication;
 import com.gdgssu.android_deviewsched.R;
+import com.gdgssu.android_deviewsched.model.Track;
 
 public class SchePagerFragment extends Fragment {
 
+    private static final String TAG = "SchePagerFragment";
 
-    public static SchePagerFragment newInstance() {
+    private Track mTrackData;
+
+    public static SchePagerFragment newInstance(Track track) {
         SchePagerFragment fragment = new SchePagerFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(TAG, track);
+        fragment.setArguments(bundle);
 
         return fragment;
     }
@@ -26,6 +34,10 @@ public class SchePagerFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (getArguments() != null){
+            mTrackData = (Track)getArguments().getSerializable(TAG);
+        }
+
     }
 
     @Override
@@ -35,14 +47,12 @@ public class SchePagerFragment extends Fragment {
 
         initScheListView(rootView);
 
-        return inflater.inflate(R.layout.fragment_sche_pager, container, false);
+        return rootView;
     }
 
     private void initScheListView(View rootView) {
         ListView listview = (ListView) rootView.findViewById(R.id.fragment_sche_pager_list);
-
-        SchePagerAdapter adapter = new SchePagerAdapter();
-        //Todo 인자로 listview의 데이터에 해당하는 객체 리스트를 전달해야함.
+        SchePagerAdapter adapter = new SchePagerAdapter(mTrackData, DeviewSchedApplication.GLOBAL_CONTEXT);
 
         listview.setAdapter(adapter);
     }
