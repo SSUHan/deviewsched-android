@@ -2,15 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:baselineAligned="false"
-    android:layout_height="@dimen/material_listitem_height_72dp"
-    android:background="@drawable/custom_bg"
-    android:clickable="true">
+    android:layout_height="@dimen/material_listitem_height_72dp">
 
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="2"
-        style="@style/Widget.DeviewAppTheme.BoardListItem">
+        android:layout_weight="2">
         <TextView
             android:id="@+id/item_sche_list_time"
             android:layout_width="wrap_content"
@@ -19,15 +16,13 @@
             android:text="10:00~10:45"
             android:textColor="#000000"
             android:paddingLeft="8dp"
-            android:textSize="12sp"
-            style="@style/Widget.DeviewAppTheme.BoardListItem"/>
+            android:textSize="12sp"/>
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="7"
-        style="@style/Widget.DeviewAppTheme.BoardListItem">
+        android:layout_weight="7">
 
         <ImageView
             android:id="@+id/item_sche_list_speaker_img"
@@ -35,8 +30,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/material_icon_paddingleft_16dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_account_circle_black_36dp"
-            style="@style/Widget.DeviewAppTheme.BoardListItem"/>
+            android:src="@drawable/ic_account_circle_black_36dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -55,8 +49,7 @@
                 android:textColor="#000000"
                 android:maxLines="2"
                 android:ellipsize="end"
-                android:text="행복한 프로그래머"
-                style="@style/Widget.DeviewAppTheme.BoardListItem"/>
+                android:text="행복한 프로그래머"/>
 
             <TextView
                 android:id="@+id/item_sche_list_speaker_name"
@@ -65,8 +58,7 @@
                 android:layout_marginTop="4dp"
                 android:textSize="10sp"
                 android:textColor="#000000"
-                android:text="유석문"
-                style="@style/Widget.DeviewAppTheme.BoardListItem"/>
+                android:text="유석문"/>
 
         </LinearLayout>
     </RelativeLayout>

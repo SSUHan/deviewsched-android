@@ -24,6 +24,9 @@ import java.util.ArrayList;
  */
 public class SchePagerAdapter extends BaseAdapter {
 
+    /**
+     * Todo:Keynote시간까지 포함하여 9:30 ~ 9:50을 넣어야 함. 2014년 기준으로 하루에 한트랙에 8개의 세션이 존재함.
+     */
     private String[] sessionTimes = new String[]{
             "10:00~10:45",
             "11:00~11:45",
@@ -76,7 +79,7 @@ public class SchePagerAdapter extends BaseAdapter {
                 dayHolder = (DayViewHolder)convertView.getTag();
             }
 
-            dayHolder.day.setText("Day1");
+            dayHolder.day.setText("Day 1");
             dayHolder.date.setText("9.14");
 
         }else{
