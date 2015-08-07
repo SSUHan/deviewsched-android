@@ -26,10 +26,13 @@ import com.gdgssu.android_deviewsched.ui.findfriends.FindFriendsFragment;
 import com.gdgssu.android_deviewsched.ui.sche.ScheFragment;
 import com.gdgssu.android_deviewsched.ui.setting.SettingActivity;
 import com.gdgssu.android_deviewsched.ui.home.HomeFragment;
+import com.github.florent37.materialviewpager.MaterialViewPager;
 
 public class MainActivity extends AppCompatActivity implements DeviewFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
+    private MaterialViewPager mViewPager;
+    private Toolbar mToolbar;
 
     private ImageView avatarImage;
     private TextView nameText;
@@ -44,17 +47,34 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
 
         fragmentManager = getSupportFragmentManager();
 
+        initMaterialViewPager();
         initToolbar();
         initNavigationView();
     }
 
     private void initToolbar() {
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
+        setTitle("");
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        mToolbar = mViewPager.getToolbar();
+
+        if (mToolbar!=null){
+            setSupportActionBar(mToolbar);
+
+            final ActionBar actionBar = getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setDisplayShowHomeEnabled(true);
+                actionBar.setDisplayShowTitleEnabled(true);
+                actionBar.setDisplayUseLogoEnabled(false);
+                actionBar.setHomeButtonEnabled(true);
+            }
+        }
+    }
+
+    private void initMaterialViewPager() {
+
+        mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
+
     }
 
     private void initNavigationView() {
@@ -114,9 +134,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
     public void showHome() {
 
         /**
-         * Todo Home은 Fragment를 쓰지않고 MainActivity에 직접 나타낼 예정
-         * 네비게이션View에서 Home을 누르면 MainActivity위의 모든 Fragment를 비우는 로직을 작성해야함.
-         * 현재 showHome() 한번에 한개밖에 안빠지고 있음.
+         * Todo 아래의 메소드가 호출되면 MainActivity위로 있는 모든 Fragment가 소멸됨
          */
 
         fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
