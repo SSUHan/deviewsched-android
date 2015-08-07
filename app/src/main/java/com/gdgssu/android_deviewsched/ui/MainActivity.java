@@ -116,9 +116,10 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
         /**
          * Todo Home은 Fragment를 쓰지않고 MainActivity에 직접 나타낼 예정
          * 네비게이션View에서 Home을 누르면 MainActivity위의 모든 Fragment를 비우는 로직을 작성해야함.
+         * 현재 showHome() 한번에 한개밖에 안빠지고 있음.
          */
 
-        fragmentManager.popBackStackImmediate();
+        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
         mDrawerLayout.closeDrawers();
     }
