@@ -19,12 +19,15 @@
         <item name="android:focusableInTouchMode">false</item>
     </style>
 
-    <style name="AppBaseTheme" parent="@style/Theme.AppCompat.Light">
+    <style name="DeviewAppBaseTheme_MaterialViewPager" parent="@style/Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme" parent="AppBaseTheme">
+    <style name="DeviewAppTheme_MaterialViewPager" parent="DeviewAppBaseTheme_MaterialViewPager">
 
-        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/black</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="android:windowTranslucentStatus" tools:targetApi="21">true</item>
 

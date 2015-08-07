@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
                 actionBar.setDisplayUseLogoEnabled(false);
                 actionBar.setHomeButtonEnabled(true);
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+                //흰색으로 바꿀까 말까 고민중...
             }
         }
     }
