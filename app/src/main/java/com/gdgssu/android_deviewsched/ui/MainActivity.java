@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,13 +20,12 @@ import android.widget.TextView;
 
 import com.facebook.appevents.AppEventsLogger;
 import com.gdgssu.android_deviewsched.R;
+import com.gdgssu.android_deviewsched.example.RecyclerViewFragment;
 import com.gdgssu.android_deviewsched.ui.aboutus.AboutusFragment;
 import com.gdgssu.android_deviewsched.ui.sche.ScheFragment;
 import com.gdgssu.android_deviewsched.ui.deviewstory.DeviewStoryFragment;
 import com.gdgssu.android_deviewsched.ui.findfriends.FindFriendsFragment;
-import com.gdgssu.android_deviewsched.ui.sche.ScheFragment;
 import com.gdgssu.android_deviewsched.ui.setting.SettingActivity;
-import com.gdgssu.android_deviewsched.ui.home.HomeFragment;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 
 public class MainActivity extends AppCompatActivity implements DeviewFragment.OnFragmentInteractionListener {
@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
                 actionBar.setDisplayShowTitleEnabled(true);
                 actionBar.setDisplayUseLogoEnabled(false);
                 actionBar.setHomeButtonEnabled(true);
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
             }
         }
     }
@@ -74,6 +75,18 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
     private void initMaterialViewPager() {
 
         mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
+
+        mViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                return RecyclerViewFragment.newInstance();
+            }
+
+            @Override
+            public int getCount() {
+                return 1;
+            }
+        });
 
     }
 
