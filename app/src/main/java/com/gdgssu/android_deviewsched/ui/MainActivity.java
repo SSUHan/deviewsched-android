@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
         });
     }
 
-    public void showHome(){
+    public void showHome() {
 
         /**
          * Todo Home은 Fragment를 쓰지않고 MainActivity에 직접 나타낼 예정
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
         mDrawerLayout.closeDrawers();
     }
 
-    public void showAllSche(CharSequence title){
+    public void showAllSche(CharSequence title) {
         Fragment allScheFragment = ScheFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, allScheFragment);
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
         mDrawerLayout.closeDrawers();
     }
 
-    public void showMySche(CharSequence title){
+    public void showMySche(CharSequence title) {
         Fragment myScheFragment = ScheFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, myScheFragment);
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
         mDrawerLayout.closeDrawers();
     }
 
-    public void showFindFriends(CharSequence title){
+    public void showFindFriends(CharSequence title) {
         Fragment findFriendsFragment = FindFriendsFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, findFriendsFragment);
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
         mDrawerLayout.closeDrawers();
     }
 
-    public void showDeviewStory(CharSequence title){
+    public void showDeviewStory(CharSequence title) {
         Fragment deviewStoryFragment = DeviewStoryFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, deviewStoryFragment);
@@ -159,13 +159,13 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
         mDrawerLayout.closeDrawers();
     }
 
-    public void showSetting(){
+    public void showSetting() {
         startActivity(new Intent(MainActivity.this, SettingActivity.class));
 
         mDrawerLayout.closeDrawers();
     }
 
-    public void showAboutus(CharSequence title){
+    public void showAboutus(CharSequence title) {
         Fragment aboutusFragment = AboutusFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, aboutusFragment);

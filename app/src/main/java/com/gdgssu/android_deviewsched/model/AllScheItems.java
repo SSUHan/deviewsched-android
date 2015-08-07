@@ -6,7 +6,7 @@ import java.util.ArrayList;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AllScheItems {
 
-    public ArrayList<Day> days;
+    public ArrayList<Track> tracks;
 
     public static AllScheItems result;
 

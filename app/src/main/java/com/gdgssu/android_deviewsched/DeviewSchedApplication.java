@@ -58,7 +58,7 @@ public class DeviewSchedApplication extends Application{
                     public void onResponse(AllScheItems items) {
                         AllScheItems.result = items;
                         Toast.makeText(DeviewSchedApplication.GLOBAL_CONTEXT,
-                                AllScheItems.result.days.get(0).tracks.get(0).sessions.get(0).session_title,
+                                AllScheItems.result.tracks.get(0).sessions.get(0).session_title,
                                 Toast.LENGTH_LONG).show();
                     }
                 })
