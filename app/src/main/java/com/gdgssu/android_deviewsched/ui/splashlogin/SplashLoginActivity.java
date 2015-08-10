@@ -2,17 +2,16 @@ package com.gdgssu.android_deviewsched.ui.splashlogin;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -23,6 +22,7 @@ import com.gdgssu.android_deviewsched.R;
 import com.gdgssu.android_deviewsched.helper.LoginPreferenceHelper;
 import com.gdgssu.android_deviewsched.model.AllScheItems;
 import com.gdgssu.android_deviewsched.ui.MainActivity;
+import com.navercorp.volleyextensions.volleyer.Volleyer;
 
 import static com.navercorp.volleyextensions.volleyer.Volleyer.volleyer;
 
@@ -37,17 +37,17 @@ public class SplashLoginActivity extends AppCompatActivity implements FacebookCa
     /**
      * 애플리케이션에 유저 로그인이 되어있는 상태와 되어있지 않은 상태로 액티비티에서 하는 일이 달라짐
      * DeviewSchedApplication.LOGIN_STATE로 데뷰 앱에 로그인이 되어있는 상태를 받아왔을 떄,
-     *
+     * <p/>
      * 로그인이 안되어 있는 상태(초기 사용자) :
-     *      애플리케이션이 시작되고 이 화면이 뜨고나서 전체 시간표를 받아옴.
-     *      전체시간표를 모두 받아오면 GDG SSU로고가 사라지고, 페이스북으로 로그인 버튼이 나온다.
-     *      페이스북으로 로그인 버튼을 누르고 onSuccess가 떨어지면 서버에 유저를 등록시키기 위한 AccessToken을 전달하고
-     *      유저의 사진과 실명을 가져온다.
-     *      메인화면에 보여줄 데이터도 가져온다.
-     *
+     * 애플리케이션이 시작되고 이 화면이 뜨고나서 전체 시간표를 받아옴.
+     * 전체시간표를 모두 받아오면 GDG SSU로고가 사라지고, 페이스북으로 로그인 버튼이 나온다.
+     * 페이스북으로 로그인 버튼을 누르고 onSuccess가 떨어지면 서버에 유저를 등록시키기 위한 AccessToken을 전달하고
+     * 유저의 사진과 실명을 가져온다.
+     * 메인화면에 보여줄 데이터도 가져온다.
+     * <p/>
      * 로그인이 되어있는 상태 :
-     *      전체 시간표 / 메인화면에 뿌려질 데이터 / 유저의 사진과 실명 데이터를 가져옴
-     *      애플리케이션이 시작하고 3초뒤에 페이스북으로 로그인 버튼이 뜨지 않는다.
+     * 전체 시간표 / 메인화면에 뿌려질 데이터 / 유저의 사진과 실명 데이터를 가져옴
+     * 애플리케이션이 시작하고 3초뒤에 페이스북으로 로그인 버튼이 뜨지 않는다.
      */
 
     @Override
@@ -57,15 +57,13 @@ public class SplashLoginActivity extends AppCompatActivity implements FacebookCa
 
         initView();
 
-        getAllScheData();
-
         callbackManager = CallbackManager.Factory.create();
 
-        if (DeviewSchedApplication.LOGIN_STATE){
-            finish();
-            startActivity(new Intent(SplashLoginActivity.this, MainActivity.class));
-        }else{
-
+        if (DeviewSchedApplication.LOGIN_STATE) {
+            getAllScheData();
+            goMainActivity();
+        } else {
+            getAllScheData();
         }
     }
 
@@ -79,14 +77,17 @@ public class SplashLoginActivity extends AppCompatActivity implements FacebookCa
             }
         });
 
-        frontInfo = (LinearLayout)findViewById(R.id.activity_splashlogin_frontinfo);
+        frontInfo = (LinearLayout) findViewById(R.id.activity_splashlogin_frontinfo);
 
     }
 
+    public void goMainActivity() {
+        finish();
+        startActivity(new Intent(SplashLoginActivity.this, MainActivity.class));
+    }
+
     private void getAllScheData() {
-        /**
-         * Todo 이곳에서 모든 전체스케쥴의 데이터를 가져오는 일을 해야함.
-         */
+
         volleyer(DeviewSchedApplication.deviewRequestQueue)
                 .get(DeviewSchedApplication.HOST_URL + "mock/allsche.json")
                 .withTargetClass(AllScheItems.class)
@@ -94,8 +95,11 @@ public class SplashLoginActivity extends AppCompatActivity implements FacebookCa
                     @Override
                     public void onResponse(AllScheItems items) {
                         AllScheItems.result = items;
+                        if (DeviewSchedApplication.LOGIN_STATE) {
 
-                        frontInfoFadeout();
+                        } else {
+                            frontInfoLayoutFadeout();
+                        }
                     }
                 })
                 .withErrorListener(new Response.ErrorListener() {
@@ -107,9 +111,8 @@ public class SplashLoginActivity extends AppCompatActivity implements FacebookCa
                 .execute();
     }
 
-    private void frontInfoFadeout() {
+    private void frontInfoLayoutFadeout() {
         final Animation animationFadeout;
-
         animationFadeout = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fadeout);
         animationFadeout.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -138,34 +141,36 @@ public class SplashLoginActivity extends AppCompatActivity implements FacebookCa
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
+    /**
+     * Facebook서버로부터 로그인 가능을 수행하기위해
+     * loginButton.registerCallback의 인터페이스 메소드를 구현하는 부분
+     * onSuccess / onCancel / onError 에 대한 구현이 아래에 있음.
+     */
+
     @Override
     public void onSuccess(LoginResult loginResult) {
-
-        //                        Log.d("Login", "onSuccess");
+//        Log.d("Login", "onSuccess");
 //
-//                        Log.d("Token", AccessToken.getCurrentAccessToken().getToken());
+//        Log.d("Token", AccessToken.getCurrentAccessToken().getToken());
 //
-//                        //Todo 서버 측으로 Volley-Extenstion을 이용해 token을 post형식으로 보내는 로직 개발 with Volley Extension
-//                        Volleyer.volleyer().post("http://www.google.com")
-//                                .addHeader("token", AccessToken.getCurrentAccessToken().getToken())
-//                                .withListener(new Response.Listener<String>() {
-//                                    @Override
-//                                    public void onResponse(String response) {
-//                                        //Todo MainActivity / HomeFragment로 넘어가는 로직 개발.
-//                                    }
-//                                })
-//                                .withErrorListener(new Response.ErrorListener() {
-//                                    @Override
-//                                    public void onErrorResponse(VolleyError error) {
+//        Volleyer.volleyer().post("http://www.google.com")
+//                .addHeader("token", AccessToken.getCurrentAccessToken().getToken())
+//                .withListener(new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                    }
+//                })
+//                .withErrorListener(new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
 //
-//                                    }
-//                                })
-//                                .execute();
+//                    }
+//                })
+//                .execute();
 
         LoginPreferenceHelper prefHelper = new LoginPreferenceHelper(DeviewSchedApplication.GLOBAL_CONTEXT);
         prefHelper.setPrefLoginValue(LoginPreferenceHelper.PREF_LOGIN_STATE, true);
-        finish();
-        startActivity(new Intent(SplashLoginActivity.this, MainActivity.class));
+        goMainActivity();
 
     }
 
