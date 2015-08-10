@@ -61,6 +61,12 @@ public class SplashLoginActivity extends AppCompatActivity implements FacebookCa
 
         if (DeviewSchedApplication.LOGIN_STATE) {
             getAllScheData();
+            /**
+             * Todo 기 로그인 사용자는 이 부분에서
+             * 서버로 토큰을 보내고 유저의 사진과 이름 정보를 가져와야한다.
+             * 더불어 메인화면에 보여줄 데이터도 가져와야함.
+             */
+            //sendAccessToken(AccessToken.getCurrentAccessToken().getToken());
             goMainActivity();
         } else {
             getAllScheData();
@@ -141,6 +147,24 @@ public class SplashLoginActivity extends AppCompatActivity implements FacebookCa
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
+    public void sendAccessToken(String accessToken){
+        volleyer().post(DeviewSchedApplication.HOST_URL+"/sendToken")
+                .addHeader("X-Facebook-Token", accessToken)
+                .withListener(new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //Todo 유저의 사진과 이름 그리고 메인화면에 보여줄 데이터를 가져와야함.
+                    }
+                })
+                .withErrorListener(new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                })
+                .execute();
+    }
+
     /**
      * Facebook서버로부터 로그인 가능을 수행하기위해
      * loginButton.registerCallback의 인터페이스 메소드를 구현하는 부분
@@ -149,24 +173,14 @@ public class SplashLoginActivity extends AppCompatActivity implements FacebookCa
 
     @Override
     public void onSuccess(LoginResult loginResult) {
-//        Log.d("Login", "onSuccess");
-//
-//        Log.d("Token", AccessToken.getCurrentAccessToken().getToken());
-//
-//        Volleyer.volleyer().post("http://www.google.com")
-//                .addHeader("token", AccessToken.getCurrentAccessToken().getToken())
-//                .withListener(new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                    }
-//                })
-//                .withErrorListener(new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//
-//                    }
-//                })
-//                .execute();
+        Log.d("Login", "onSuccess");
+
+        /**
+         * Todo 초기 로그인 사용자는 이 부분에서
+         * 서버로 토큰을 보내고 유저의 사진과 이름 정보를 가져와야한다.
+         */
+
+        //sendAccessToken(AccessToken.getCurrentAccessToken().getToken());
 
         LoginPreferenceHelper prefHelper = new LoginPreferenceHelper(DeviewSchedApplication.GLOBAL_CONTEXT);
         prefHelper.setPrefLoginValue(LoginPreferenceHelper.PREF_LOGIN_STATE, true);
