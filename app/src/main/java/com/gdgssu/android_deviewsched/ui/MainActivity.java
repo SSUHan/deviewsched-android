@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,17 +20,19 @@ import android.widget.TextView;
 
 import com.facebook.appevents.AppEventsLogger;
 import com.gdgssu.android_deviewsched.R;
+import com.gdgssu.android_deviewsched.example.RecyclerViewFragment;
 import com.gdgssu.android_deviewsched.ui.aboutus.AboutusFragment;
 import com.gdgssu.android_deviewsched.ui.sche.ScheFragment;
 import com.gdgssu.android_deviewsched.ui.deviewstory.DeviewStoryFragment;
 import com.gdgssu.android_deviewsched.ui.findfriends.FindFriendsFragment;
-import com.gdgssu.android_deviewsched.ui.sche.ScheFragment;
 import com.gdgssu.android_deviewsched.ui.setting.SettingActivity;
-import com.gdgssu.android_deviewsched.ui.home.HomeFragment;
+import com.github.florent37.materialviewpager.MaterialViewPager;
 
 public class MainActivity extends AppCompatActivity implements DeviewFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
+    private MaterialViewPager mViewPager;
+    private Toolbar mToolbar;
 
     private ImageView avatarImage;
     private TextView nameText;
@@ -44,17 +47,48 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
 
         fragmentManager = getSupportFragmentManager();
 
+        initMaterialViewPager();
         initToolbar();
         initNavigationView();
     }
 
     private void initToolbar() {
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
+        setTitle("");
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        mToolbar = mViewPager.getToolbar();
+
+        if (mToolbar!=null){
+            setSupportActionBar(mToolbar);
+
+            final ActionBar actionBar = getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setDisplayShowHomeEnabled(true);
+                actionBar.setDisplayShowTitleEnabled(true);
+                actionBar.setDisplayUseLogoEnabled(false);
+                actionBar.setHomeButtonEnabled(true);
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+                //흰색으로 바꿀까 말까 고민중...
+            }
+        }
+    }
+
+    private void initMaterialViewPager() {
+
+        mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
+
+        mViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                return RecyclerViewFragment.newInstance();
+            }
+
+            @Override
+            public int getCount() {
+                return 1;
+            }
+        });
+
     }
 
     private void initNavigationView() {
@@ -111,19 +145,18 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
         });
     }
 
-    public void showHome(){
+    public void showHome() {
 
         /**
-         * Todo Home은 Fragment를 쓰지않고 MainActivity에 직접 나타낼 예정
-         * 네비게이션View에서 Home을 누르면 MainActivity위의 모든 Fragment를 비우는 로직을 작성해야함.
+         * Todo 아래의 메소드가 호출되면 MainActivity위로 있는 모든 Fragment가 소멸됨
          */
 
-        fragmentManager.popBackStackImmediate();
+        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
         mDrawerLayout.closeDrawers();
     }
 
-    public void showAllSche(CharSequence title){
+    public void showAllSche(CharSequence title) {
         Fragment allScheFragment = ScheFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, allScheFragment);
@@ -132,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
         mDrawerLayout.closeDrawers();
     }
 
-    public void showMySche(CharSequence title){
+    public void showMySche(CharSequence title) {
         Fragment myScheFragment = ScheFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, myScheFragment);
@@ -141,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
         mDrawerLayout.closeDrawers();
     }
 
-    public void showFindFriends(CharSequence title){
+    public void showFindFriends(CharSequence title) {
         Fragment findFriendsFragment = FindFriendsFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, findFriendsFragment);
@@ -150,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
         mDrawerLayout.closeDrawers();
     }
 
-    public void showDeviewStory(CharSequence title){
+    public void showDeviewStory(CharSequence title) {
         Fragment deviewStoryFragment = DeviewStoryFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, deviewStoryFragment);
@@ -159,13 +192,13 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
         mDrawerLayout.closeDrawers();
     }
 
-    public void showSetting(){
+    public void showSetting() {
         startActivity(new Intent(MainActivity.this, SettingActivity.class));
 
         mDrawerLayout.closeDrawers();
     }
 
-    public void showAboutus(CharSequence title){
+    public void showAboutus(CharSequence title) {
         Fragment aboutusFragment = AboutusFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, aboutusFragment);

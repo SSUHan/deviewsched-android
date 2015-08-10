@@ -33,7 +33,6 @@ public class DeviewSchedApplication extends Application{
         FacebookSdk.sdkInitialize(GLOBAL_CONTEXT);
         setLoginState();
         initRequestQueue();
-        getAllScheData();
     }
 
     public void setLoginState() {
@@ -41,33 +40,8 @@ public class DeviewSchedApplication extends Application{
         LOGIN_STATE = prefHelper.getPrefLoginValue(LoginPreferenceHelper.PREF_LOGIN_STATE, false);
     }
 
-    private void initRequestQueue() {
+    public static void initRequestQueue() {
         deviewRequestQueue = DefaultRequestQueueFactory.create(GLOBAL_CONTEXT);
         deviewRequestQueue.start();
-    }
-
-    private void getAllScheData() {
-        /**
-         * Todo 이곳에서 모든 전체스케쥴의 데이터를 가져오는 일을 해야함.
-         */
-        volleyer(deviewRequestQueue)
-                .get(HOST_URL + "mock/allsche.json")
-                .withTargetClass(AllScheItems.class)
-                .withListener(new Response.Listener<AllScheItems>() {
-                    @Override
-                    public void onResponse(AllScheItems items) {
-                        AllScheItems.result = items;
-                        Toast.makeText(DeviewSchedApplication.GLOBAL_CONTEXT,
-                                AllScheItems.result.days.get(0).tracks.get(0).sessions.get(0).session_title,
-                                Toast.LENGTH_LONG).show();
-                    }
-                })
-                .withErrorListener(new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, error.toString());
-                    }
-                })
-                .execute();
     }
 }

@@ -55,5 +55,6 @@ public class SchePagerFragment extends Fragment {
         SchePagerAdapter adapter = new SchePagerAdapter(mTrackData, DeviewSchedApplication.GLOBAL_CONTEXT);
 
         listview.setAdapter(adapter);
+
     }
 }
