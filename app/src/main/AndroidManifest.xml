@@ -22,7 +22,11 @@
         <activity
             android:name=".ui.splashlogin.SplashLoginActivity"
             android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -38,11 +42,6 @@
         <activity
             android:name=".ui.detailsession.DetailSessionActivity"
             android:label="@string/title_activity_detail_session" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

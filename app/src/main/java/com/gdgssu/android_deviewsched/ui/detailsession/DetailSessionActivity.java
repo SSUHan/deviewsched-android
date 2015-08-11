@@ -1,6 +1,5 @@
 package com.gdgssu.android_deviewsched.ui.detailsession;
 
-import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,13 +11,12 @@ import android.widget.ListView;
 
 import com.bumptech.glide.Glide;
 import com.gdgssu.android_deviewsched.R;
-import com.gdgssu.android_deviewsched.model.Session;
 
 import java.util.ArrayList;
 
 public class DetailSessionActivity extends AppCompatActivity {
 
-    ArrayList<String> arrayList = new ArrayList<String>();
+    private ArrayList<String> arrayList = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +26,9 @@ public class DetailSessionActivity extends AppCompatActivity {
         /**
          * Todo 이전 세션리스트에서 Intent를 이용해 데이터를 가져와야한다.
          */
-//
-//        Intent intent = getIntent();
-//        Session sessionInfo = (Session)intent.getSerializableExtra("KEY");
+
+        //Intent intent = getIntent();
+        //Session sessionInfo = (Session)intent.getSerializableExtra("KEY")
 
         // CoolapsingView를 테스트하기위한 리스트뷰 더미데이터
         arrayList.add("Item1");
@@ -62,7 +60,7 @@ public class DetailSessionActivity extends AppCompatActivity {
     }
 
     private void initToolbar() {
-        final Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -73,13 +71,13 @@ public class DetailSessionActivity extends AppCompatActivity {
 
     private void loadBackdropImage() {
         //임시 더미이미지
-        ImageView backdropImage = (ImageView)findViewById(R.id.backdrop);
+        ImageView backdropImage = (ImageView) findViewById(R.id.backdrop);
         Glide.with(getApplicationContext()).load("http://insanehong.kr/post/deview2013/@img/keynote.jpg")
                 .centerCrop().into(backdropImage);
     }
 
     private void initListView() {
-        ListView listview = (ListView)findViewById(R.id.activity_detail_session_list);
+        ListView listview = (ListView) findViewById(R.id.activity_detail_session_list);
         listview.setAdapter(new DetailSessionAdapter(getApplicationContext(), arrayList));
     }
 
