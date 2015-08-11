@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:layout_scrollFlags="scroll|enterAlways"/>
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:navigationIcon="@drawable/abc_ic_ab_back_mtrl_am_alpha"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/fragment_sche_tabs"

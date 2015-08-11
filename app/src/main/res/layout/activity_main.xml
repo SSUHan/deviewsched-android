@@ -27,7 +27,7 @@
             app:viewpager_displayToolbarWhenSwipe="true"
             app:viewpager_transparentToolbar="true"
             app:viewpager_animatedHeaderImage="true"
-            app:viewpager_disableToolbar="false"/>
+            app:viewpager_disableToolbar="false" />
 
         <!-- The main content view -->
         <FrameLayout

@@ -41,7 +41,7 @@
 
         <activity
             android:name=".ui.detailsession.DetailSessionActivity"
-            android:label="@string/title_activity_detail_session" >
+            android:label="@string/title_activity_detail_session">
         </activity>
     </application>
 
