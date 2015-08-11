@@ -1,5 +1,6 @@
 package com.gdgssu.android_deviewsched.ui.detailsession;
 
+import android.os.Build;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -78,6 +79,9 @@ public class DetailSessionActivity extends AppCompatActivity {
 
     private void initListView() {
         ListView listview = (ListView) findViewById(R.id.activity_detail_session_list);
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+            listview.setNestedScrollingEnabled(true);
+        }
         listview.setAdapter(new DetailSessionAdapter(getApplicationContext(), arrayList));
     }
 
