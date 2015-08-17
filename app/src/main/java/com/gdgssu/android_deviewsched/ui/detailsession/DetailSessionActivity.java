@@ -87,10 +87,10 @@ public class DetailSessionActivity extends AppCompatActivity {
     private void initHeaderView() {
         View headerView = getLayoutInflater().inflate(R.layout.item_detail_session_header, null, false);
 
-        TextView lectureTarget = (TextView)headerView.findViewById(R.id.item_detail_session_second_sessiontarget);
+        TextView lectureTarget = (TextView)headerView.findViewById(R.id.item_detail_session_header_sessiontarget);
         lectureTarget.setText("훌륭한 프로그래머가 되고싶은 모든 ");
 
-        TextView lectureContent = (TextView)headerView.findViewById(R.id.item_detail_session_second_sessioninfo);
+        TextView lectureContent = (TextView)headerView.findViewById(R.id.item_detail_session_header_sessioninfo);
         lectureContent.setText(dummyText);
 
         listView.addHeaderView(headerView);
