@@ -139,6 +139,7 @@ public class SchePagerAdapter extends BaseAdapter {
     }
 
     public static class SessionViewHolder {
+
         public TextView sessionTime;
         public ImageView speakerImg;
         public TextView speakerName;
@@ -147,5 +148,6 @@ public class SchePagerAdapter extends BaseAdapter {
         public RelativeLayout dayView;
         public TextView dayText;
         public TextView dateText;
+
     }
 }

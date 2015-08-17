@@ -5,6 +5,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.widget.Toast;
 import com.gdgssu.android_deviewsched.R;
 import com.gdgssu.android_deviewsched.model.FindFriend;
 import com.gdgssu.android_deviewsched.ui.DeviewFragment;
+import com.gdgssu.android_deviewsched.ui.MainActivity;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
@@ -65,10 +69,26 @@ public class FindFriendsFragment extends DeviewFragment {
 
         View rootView = inflater.inflate(R.layout.fragment_find_friends, container, false);
 
+        initToolbar(rootView);
         initPullRefresh(rootView);
         initList(rootView);
 
         return rootView;
+    }
+
+    private void initToolbar(View rootView) {
+        Toolbar mToolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
+
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).showHome();
+            }
+        });
     }
 
     private void initPullRefresh(View rootView){
