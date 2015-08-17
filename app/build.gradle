@@ -55,4 +55,6 @@ dependencies {
     compile ('com.github.florent37:carpaccio:1.0.0@aar'){
         transitive=true
     }
+    compile 'com.github.markushi:circlebutton:1.1'
+
 }

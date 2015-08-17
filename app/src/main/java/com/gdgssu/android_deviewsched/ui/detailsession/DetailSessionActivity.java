@@ -72,9 +72,11 @@ public class DetailSessionActivity extends AppCompatActivity {
             listview.setNestedScrollingEnabled(true);
         }
 
-        View headerView = getLayoutInflater().inflate(R.layout.item_detail_session_info, null, false);
+        View headerView = getLayoutInflater().inflate(R.layout.item_detail_session_header, null, false);
+        View footerView = getLayoutInflater().inflate(R.layout.item_detail_session_footer, null, false);
 
         listview.addHeaderView(headerView);
+        listview.addFooterView(footerView);
 
         listview.setAdapter(new DetailSessionAdapter(getApplicationContext(), arrayList));
     }
