@@ -30,7 +30,6 @@
                 android:textColor="@android:color/black"
                 android:text="유석문"/>
 
-
             <TextView
                 android:id="@+id/item_detail_session_first_company"
                 android:layout_width="wrap_content"
@@ -89,6 +88,46 @@
             android:textSize="12sp"
             android:textColor="@android:color/black"
             android:text="Day1 10:00-10:45 in Track1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="강의대상"
+            android:layout_gravity="left"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/item_detail_session_second_sessiontarget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="강의대상"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="강의내용"
+            android:layout_gravity="left"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/item_detail_session_second_sessioninfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="강의대상"
+            android:textSize="12sp"/>
 
     </LinearLayout>
 </LinearLayout>
