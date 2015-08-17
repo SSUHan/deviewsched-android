@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -32,22 +33,9 @@ public class DetailSessionActivity extends AppCompatActivity {
         //Session sessionInfo = (Session)intent.getSerializableExtra("KEY")
 
         // CoolapsingView를 테스트하기위한 리스트뷰 더미데이터
-        arrayList.add("Item1");
-        arrayList.add("Item2");
-        arrayList.add("Item3");
-        arrayList.add("Item4");
-        arrayList.add("Item1");
-        arrayList.add("Item2");
-        arrayList.add("Item3");
-        arrayList.add("Item4");
-        arrayList.add("Item1");
-        arrayList.add("Item2");
-        arrayList.add("Item3");
-        arrayList.add("Item4");
-        arrayList.add("Item1");
-        arrayList.add("Item2");
-        arrayList.add("Item3");
-        arrayList.add("Item4");
+        arrayList.add("댓글1");
+        arrayList.add("댓글2");
+        arrayList.add("댓글3");
 
         initView();
     }
@@ -83,6 +71,11 @@ public class DetailSessionActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
             listview.setNestedScrollingEnabled(true);
         }
+
+        View headerView = getLayoutInflater().inflate(R.layout.item_detail_session_info, null, false);
+
+        listview.addHeaderView(headerView);
+
         listview.setAdapter(new DetailSessionAdapter(getApplicationContext(), arrayList));
     }
 
