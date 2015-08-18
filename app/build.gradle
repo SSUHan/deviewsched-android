@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 23
     buildToolsVersion '22.0.1'
 
     defaultConfig {
@@ -55,4 +55,6 @@ dependencies {
     compile ('com.github.florent37:carpaccio:1.0.0@aar'){
         transitive=true
     }
+    compile 'com.github.markushi:circlebutton:1.1'
+
 }
