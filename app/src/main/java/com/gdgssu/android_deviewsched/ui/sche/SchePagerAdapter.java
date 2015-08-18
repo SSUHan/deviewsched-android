@@ -1,10 +1,12 @@
 package com.gdgssu.android_deviewsched.ui.sche;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsoluteLayout;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,12 +48,13 @@ public class SchePagerAdapter extends BaseAdapter {
     };
     private LayoutInflater mInflater;
     private ArrayList<Session> sessionItems;
+    private Context mContext;
 
     public SchePagerAdapter(Track track, Context context) {
 
         this.sessionItems = track.sessions;
         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+        this.mContext = context;
     }
 
     @Override
@@ -81,6 +84,7 @@ public class SchePagerAdapter extends BaseAdapter {
             sessionHolder = new SessionViewHolder();
             sessionHolder.sessionTime = (TextView) convertView.findViewById(R.id.item_sche_list_time);
             sessionHolder.speakerImg = (ImageView) convertView.findViewById(R.id.item_sche_list_speaker_img);
+            sessionHolder.speakerImgSecond = (ImageView) convertView.findViewById(R.id.item_sche_list_speaker_img_second);
             sessionHolder.speakerName = (TextView) convertView.findViewById(R.id.item_sche_list_speaker_name);
             sessionHolder.sessionName = (TextView) convertView.findViewById(R.id.item_sche_list_session_title);
 
@@ -94,6 +98,8 @@ public class SchePagerAdapter extends BaseAdapter {
             sessionHolder = (SessionViewHolder) convertView.getTag();
         }
 
+        sessionHolder.speakerImgSecond.setVisibility(View.GONE);
+
         if (position>=0&&position<=7){
             if (position==0){
                 sessionHolder.dayView.setVisibility(View.VISIBLE);
@@ -102,13 +108,15 @@ public class SchePagerAdapter extends BaseAdapter {
             }else{
                 sessionHolder.dayView.setVisibility(View.INVISIBLE);
 
-                sessionHolder.sessionTime.setText(sessionTimes[position-1]);
+                sessionHolder.sessionTime.setText(sessionTimes[position - 1]);
 
                 Glide.with(DeviewSchedApplication.GLOBAL_CONTEXT)
                         .load(sessionItems.get(position-1).speakers.get(0).img)
                         .transform(new GlideCircleTransform(DeviewSchedApplication.GLOBAL_CONTEXT))
                         .override(54, 54) //임의로 결정한 크기임.
                         .into(sessionHolder.speakerImg);
+
+                sessionHolder.speakerImgSecond.setVisibility(View.VISIBLE);
 
                 sessionHolder.speakerName.setText(sessionItems.get(position-1).speakers.get(0).name);
                 sessionHolder.sessionName.setText(sessionItems.get(position-1).session_title);
@@ -142,6 +150,7 @@ public class SchePagerAdapter extends BaseAdapter {
 
         public TextView sessionTime;
         public ImageView speakerImg;
+        public ImageView speakerImgSecond;
         public TextView speakerName;
         public TextView sessionName;
 

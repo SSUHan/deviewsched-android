@@ -62,6 +62,8 @@ public class DetailSessionActivity extends AppCompatActivity {
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
 
+        collapsingToolbar.setTitle("행복한 프로그래머");
+
     }
 
     private void loadBackdropImage() {
