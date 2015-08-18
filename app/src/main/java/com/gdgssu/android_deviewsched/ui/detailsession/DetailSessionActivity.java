@@ -8,14 +8,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.gdgssu.android_deviewsched.R;
 
 import java.util.ArrayList;
+
+import at.markushi.ui.CircleButton;
 
 public class DetailSessionActivity extends AppCompatActivity {
 
@@ -77,7 +81,6 @@ public class DetailSessionActivity extends AppCompatActivity {
         }
 
         initHeaderView();
-
         initFooterView();
 
         listView.setAdapter(new DetailSessionAdapter(getApplicationContext(), arrayList));
@@ -106,28 +109,20 @@ public class DetailSessionActivity extends AppCompatActivity {
     private void initFooterView() {
         View footerView = getLayoutInflater().inflate(R.layout.item_detail_session_footer, null, false);
 
+        final EditText replyEditText = (EditText)footerView.findViewById(R.id.item_detail_session_footer_edittext);
+
+        CircleButton replySendButton = (CircleButton)footerView.findViewById(R.id.item_detail_session_footer_sendreply);
+        replySendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /**
+                 * 이곳에 댓글을 달았을때의 로직을 작성해주면 됨.
+                 */
+                Toast.makeText(getApplicationContext(), replyEditText.getText(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
         listView.addFooterView(footerView);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_detail_session, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }
