@@ -19,9 +19,7 @@
                 android:layout_height="match_parent"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 android:fitsSystemWindows="true"
-                app:contentScrim="?attr/colorPrimary"
-                app:expandedTitleMarginStart="48dp"
-                app:expandedTitleMarginEnd="64dp">
+                app:contentScrim="?attr/colorPrimary">
 
                 <ImageView
                     android:id="@+id/backdrop"
@@ -46,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:paddingTop="40dp"
-        android:paddingBottom="20dp"
+        android:paddingBottom="40dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </ListView>
