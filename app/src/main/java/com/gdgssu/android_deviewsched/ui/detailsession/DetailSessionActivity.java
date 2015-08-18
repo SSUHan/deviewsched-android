@@ -56,12 +56,11 @@ public class DetailSessionActivity extends AppCompatActivity {
     private void initToolbar() {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle("Session1");
+
     }
 
     private void loadBackdropImage() {
@@ -87,11 +86,19 @@ public class DetailSessionActivity extends AppCompatActivity {
     private void initHeaderView() {
         View headerView = getLayoutInflater().inflate(R.layout.item_detail_session_header, null, false);
 
-        TextView lectureTarget = (TextView)headerView.findViewById(R.id.item_detail_session_header_sessiontarget);
-        lectureTarget.setText("훌륭한 프로그래머가 되고싶은 모든 ");
+        ImageView backButton = (ImageView)headerView.findViewById(R.id.item_detail_session_header_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
-        TextView lectureContent = (TextView)headerView.findViewById(R.id.item_detail_session_header_sessioninfo);
-        lectureContent.setText(dummyText);
+        TextView sessionTarget = (TextView)headerView.findViewById(R.id.item_detail_session_header_sessiontarget);
+        sessionTarget.setText("훌륭한 프로그래머가 되고싶은 모든 프로그래머");
+
+        TextView sessionContent = (TextView)headerView.findViewById(R.id.item_detail_session_header_sessioninfo);
+        sessionContent.setText(dummyText);
 
         listView.addHeaderView(headerView);
     }
