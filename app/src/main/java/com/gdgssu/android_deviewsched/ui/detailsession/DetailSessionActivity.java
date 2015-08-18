@@ -5,8 +5,6 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -102,6 +100,10 @@ public class DetailSessionActivity extends AppCompatActivity {
 
         TextView sessionContent = (TextView)headerView.findViewById(R.id.item_detail_session_header_sessioninfo);
         sessionContent.setText(dummyText);
+
+        /**
+         * 이곳에 서버로부터 가져온 각 세션에대한 정보를 뷰에 적용하는 코드를 짜면 된다.
+         */
 
         listView.addHeaderView(headerView);
     }
