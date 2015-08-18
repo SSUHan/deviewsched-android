@@ -1,143 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/item_detail_session_header_speaker_img"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
-        android:src="@drawable/ic_account_circle_black_36dp"
-        android:layout_gravity="center_horizontal"/>
-
-    <RelativeLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
-
-        <ImageView
-            android:id="@+id/item_detail_session_header_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:src="@drawable/ic_arrow_back_black_24dp"/>
+        android:layout_margin="8dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="2dp"
+        app:cardPreventCornerOverlap="true"
+        app:contentPadding="12dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true">
-
-            <TextView
-                android:id="@+id/item_detail_session_header_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="@android:color/black"
-                android:text="유석문"/>
-
-            <TextView
-                android:id="@+id/item_detail_session_header_company"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/item_detail_session_header_name"
-                android:layout_marginLeft="5dp"
-                android:layout_alignParentBottom="true"
-                android:textSize="12sp"
-                android:textColor="@android:color/black"
-                android:text="Liot Games"/>
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignParentRight="true">
+            android:gravity="center_horizontal">
 
             <ImageView
-                android:id="@+id/item_detail_session_header_mail"
+                android:id="@+id/item_detail_session_header_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/ic_email_black_24dp"
-                />
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/ic_arrow_back_black_24dp" />
+
+            <RelativeLayout
+                android:id="@+id/item_detail_session_header_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/item_detail_session_header_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="행복한 프로그래머"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/item_detail_session_header_timelocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Day 1 10:00-10:45 in Track1"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+            </RelativeLayout>
 
             <ImageView
                 android:id="@+id/item_detail_session_header_share"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_share_black_24dp"
-                />
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_share_black_24dp" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_detail_session_header_center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/item_detail_session_header_sessioninfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="12dp"
+                    android:text=""
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="강의대상"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/item_detail_session_header_sessiontarget"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="12dp"
+                    android:text="개발을 잘하고 싶은 초보 개발자"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="2dp"
+        app:cardPreventCornerOverlap="true"
+        app:contentPadding="12dp">
+
+        <LinearLayout
+            android:id="@+id/item_detail_session_header_speakerlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/item_detail_session_head88dper_speaker_img"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_account_circle_black_36dp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="8">
+
+                <TextView
+                    android:id="@+id/item_detail_session_header_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="유석문"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/item_detail_session_header_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/item_detail_session_header_name"
+                    android:layout_marginLeft="4dp"
+                    android:layout_toRightOf="@id/item_detail_session_header_name"
+                    android:text="Liot Games"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/item_detail_session_header_mail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_email_black_24dp" />
+
+                <TextView
+                    android:id="@+id/item_detail_session_header_speakerinfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/item_detail_session_header_name"
+                    android:text="자기소개서의 첫 줄은 언제나 개발자이며 앞으로도 바뀌지 않을 것입니다. 개떡 같은 코드를 꾸준히 개선하여 찰떡 같은 코드로 바꾸는 일에 소질이 있으며, 좋은 개발자가 많아지도록 지원하는 일에도 관심이 잔뜩입니다. 업무 외에 소프트웨어마에스트로 멘토로 활동 중이며 공유를 위해서라면 여건불문 교육과 발표를 진행합니다. 현재 Riot Games에 근무 중이며 소환사명은 미니언보다못한쌤 입니다. 저서로 '소프트웨어 품질 관리: NHN은 이렇게 한다!', '프로그래머로 산다는 것', '프로그래머 철학을 만나다' 등이 있습니다"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
         </LinearLayout>
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
-
-        <TextView
-            android:id="@+id/item_detail_session_header_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@android:color/black"
-            android:text="행복한 프로그래머"/>
-
-        <TextView
-            android:id="@+id/item_detail_session_header_timelocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textColor="@android:color/black"
-            android:text="Day1 10:00-10:45 in Track1"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="12dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="강의대상"
-            android:layout_gravity="left"
-            android:textSize="14sp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/item_detail_session_header_sessiontarget"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="강의대상"
-            android:textSize="12sp"
-            android:layout_marginBottom="12dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="강의내용"
-            android:layout_gravity="left"
-            android:textSize="14sp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/item_detail_session_header_sessioninfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="강의대상"
-            android:textSize="12sp"
-            android:layout_marginBottom="12dp"/>
-
-    </LinearLayout>
+    </android.support.v7.widget.CardView>
 </LinearLayout>
