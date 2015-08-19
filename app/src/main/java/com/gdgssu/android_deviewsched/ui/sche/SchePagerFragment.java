@@ -61,8 +61,12 @@ public class SchePagerFragment extends Fragment {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if ((position==0)||(position==8)){
+                /**
+                 * Item을 클릭했을때 Day부분(position 0, 8)을 누르면 아무일도 일어나지 않도록 해놓음
+                 * 이 Position은 Deview2015 스케줄이 나오고 꼭 다시한번 확인해보아야할 부분이다.
+                 */
 
+                if ((position==0)||(position==8)){
                 }else{
                     getActivity().startActivity(new Intent(getActivity(), DetailSessionActivity.class));
                 }

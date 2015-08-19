@@ -30,6 +30,11 @@ public class SchePagerAdapter extends BaseAdapter {
     /**
      * Todo:Keynote시간까지 포함하여 9:30 ~ 9:50을 넣어야 함. 2014년 기준으로 하루에 한트랙에 8개의 세션이 존재함.
      */
+
+    /**
+     * 이 코드에서 Position과 관련한 부분은 Deview2015 스케줄이 나오고 꼭 다시한번 확인해보아야할 부분이다.
+     */
+
     private String[] sessionTimes = new String[]{
             "10:00~10:45",
             "11:00~11:45",
