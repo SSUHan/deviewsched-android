@@ -61,7 +61,11 @@ public class SchePagerFragment extends Fragment {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                getActivity().startActivity(new Intent(getActivity(), DetailSessionActivity.class));
+                if ((position==0)||(position==8)){
+
+                }else{
+                    getActivity().startActivity(new Intent(getActivity(), DetailSessionActivity.class));
+                }
             }
         });
         listview.setAdapter(adapter);

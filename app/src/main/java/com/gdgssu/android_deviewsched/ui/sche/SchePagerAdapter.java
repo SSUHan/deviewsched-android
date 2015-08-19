@@ -176,7 +176,7 @@ public class SchePagerAdapter extends BaseAdapter {
         public ImageView speakerImgSecond;
         public TextView speakerName;
         public TextView sessionName;
-        
+
         public RelativeLayout dayView;
         public TextView dayText;
         public TextView dateText;
