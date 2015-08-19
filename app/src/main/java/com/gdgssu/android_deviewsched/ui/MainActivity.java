@@ -150,59 +150,70 @@ public class MainActivity extends AppCompatActivity implements DeviewFragment.On
          * Todo 아래의 메소드가 호출되면 MainActivity위로 있는 모든 Fragment가 소멸됨
          */
 
-        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-
         mDrawerLayout.closeDrawers();
+
+        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 
     public void showAllSche(CharSequence title) {
+
+        mDrawerLayout.closeDrawers();
+
         Fragment allScheFragment = ScheFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, allScheFragment);
         fragmentTransaction.addToBackStack(null).commit();
-
-        mDrawerLayout.closeDrawers();
     }
 
     public void showMySche(CharSequence title) {
+
+        mDrawerLayout.closeDrawers();
+
         Fragment myScheFragment = ScheFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, myScheFragment);
         fragmentTransaction.addToBackStack(null).commit();
 
-        mDrawerLayout.closeDrawers();
     }
 
     public void showFindFriends(CharSequence title) {
+
+        mDrawerLayout.closeDrawers();
+
         Fragment findFriendsFragment = FindFriendsFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, findFriendsFragment);
         fragmentTransaction.addToBackStack(null).commit();
 
-        mDrawerLayout.closeDrawers();
     }
 
     public void showDeviewStory(CharSequence title) {
+
+        mDrawerLayout.closeDrawers();
+
         Fragment deviewStoryFragment = DeviewStoryFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, deviewStoryFragment);
         fragmentTransaction.addToBackStack(null).commit();
 
-        mDrawerLayout.closeDrawers();
     }
 
     public void showSetting() {
-        startActivity(new Intent(MainActivity.this, SettingActivity.class));
 
         mDrawerLayout.closeDrawers();
+
+        startActivity(new Intent(MainActivity.this, SettingActivity.class));
+
     }
 
     public void showAboutus(CharSequence title) {
+
+        mDrawerLayout.closeDrawers();
+
         Fragment aboutusFragment = AboutusFragment.newInstance(title);
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_container, aboutusFragment);
         fragmentTransaction.addToBackStack(null).commit();
-        mDrawerLayout.closeDrawers();
     }
 
     @Override
