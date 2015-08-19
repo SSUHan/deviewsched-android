@@ -50,7 +50,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/material_icon_paddingleft_16dp"
-                    android:src="@drawable/ic_account_circle_black_36dp" />
+                    android:src="@drawable/ic_account_circle_black_36dp"
+                    android:visibility="gone"/>
 
             </LinearLayout>
 
