@@ -74,6 +74,7 @@ public class ScheFragment extends DeviewFragment {
 
         ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(this.title);
 
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

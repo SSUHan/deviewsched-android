@@ -4,10 +4,14 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.gdgssu.android_deviewsched.DeviewSchedApplication;
 import com.gdgssu.android_deviewsched.R;
@@ -36,6 +40,7 @@ public class SchePagerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
 
         if (getArguments() != null){
             mTrackData = (Track)getArguments().getSerializable(TAG);
@@ -53,6 +58,13 @@ public class SchePagerFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_all_sche, menu);
+
+    }
+
     private void initScheListView(View rootView) {
         ListView listview = (ListView) rootView.findViewById(R.id.fragment_sche_pager_list);
         SchePagerAdapter adapter = new SchePagerAdapter(mTrackData, DeviewSchedApplication.GLOBAL_CONTEXT);
@@ -61,10 +73,32 @@ public class SchePagerFragment extends Fragment {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                getActivity().startActivity(new Intent(getActivity(), DetailSessionActivity.class));
+                /**
+                 * Item을 클릭했을때 Day부분(position 0, 8)을 누르면 아무일도 일어나지 않도록 해놓음
+                 * 이 Position은 Deview2015 스케줄이 나오고 꼭 다시한번 확인해보아야할 부분이다.
+                 */
+
+                if ((position==0)||(position==8)){
+                }else{
+                    getActivity().startActivity(new Intent(getActivity(), DetailSessionActivity.class));
+                }
             }
         });
         listview.setAdapter(adapter);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menu_all_sche_favorite:
+
+                Toast.makeText(getActivity(), "test favorite", Toast.LENGTH_SHORT).show();
+
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

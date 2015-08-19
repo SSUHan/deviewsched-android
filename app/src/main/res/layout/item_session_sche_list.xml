@@ -30,19 +30,36 @@
             android:layout_height="match_parent"
             android:layout_weight="7">
 
-            <ImageView
-                android:id="@+id/item_sche_list_speaker_img"
+            <LinearLayout
+                android:id="@+id/item_sche_list_speaker_img_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:paddingLeft="@dimen/material_icon_paddingleft_16dp"
-                android:src="@drawable/ic_account_circle_black_36dp" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+
+                <ImageView
+                    android:id="@+id/item_sche_list_speaker_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/material_icon_paddingleft_16dp"
+                    android:src="@drawable/ic_account_circle_black_36dp" />
+
+                <ImageView
+                    android:id="@+id/item_sche_list_speaker_img_second"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/material_icon_paddingleft_16dp"
+                    android:src="@drawable/ic_account_circle_black_36dp"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/item_sche_list_speaker_img"
+                android:layout_toRightOf="@id/item_sche_list_speaker_img_layout"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/material_icon_paddingleft_16dp"
                 android:paddingRight="8dp">

@@ -147,7 +147,8 @@
                     android:layout_height="wrap_content"
                     android:text="유석문"
                     android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/item_detail_session_header_company"

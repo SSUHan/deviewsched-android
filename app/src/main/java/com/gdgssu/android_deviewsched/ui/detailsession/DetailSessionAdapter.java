@@ -5,8 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.gdgssu.android_deviewsched.R;
 
 import java.util.ArrayList;
@@ -49,6 +49,9 @@ public class DetailSessionAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.item_detail_session_question, parent, false);
 
             questionsHolder = new QuestionsViewHolder();
+
+            questionsHolder.userImg = (ImageView) convertView.findViewById(R.id.item_detail_session_question_userimg);
+            questionsHolder.userName = (TextView) convertView.findViewById(R.id.item_detail_session_question_username);
             questionsHolder.questionText = (TextView) convertView.findViewById(R.id.item_detail_session_question_text);
 
             convertView.setTag(questionsHolder);
@@ -62,6 +65,9 @@ public class DetailSessionAdapter extends BaseAdapter {
     }
 
     public static class QuestionsViewHolder{
+        public ImageView userImg;
+        public TextView userName;
         public TextView questionText;
+
     }
 }

@@ -62,6 +62,8 @@ public class DetailSessionActivity extends AppCompatActivity {
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
 
+        collapsingToolbar.setTitle("세션 안내");
+
     }
 
     private void loadBackdropImage() {

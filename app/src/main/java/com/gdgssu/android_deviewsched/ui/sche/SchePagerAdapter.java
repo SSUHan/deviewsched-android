@@ -1,10 +1,12 @@
 package com.gdgssu.android_deviewsched.ui.sche;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsoluteLayout;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,6 +30,11 @@ public class SchePagerAdapter extends BaseAdapter {
     /**
      * Todo:Keynote시간까지 포함하여 9:30 ~ 9:50을 넣어야 함. 2014년 기준으로 하루에 한트랙에 8개의 세션이 존재함.
      */
+
+    /**
+     * 이 코드에서 Position과 관련한 부분은 Deview2015 스케줄이 나오고 꼭 다시한번 확인해보아야할 부분이다.
+     */
+
     private String[] sessionTimes = new String[]{
             "10:00~10:45",
             "11:00~11:45",
@@ -46,17 +53,18 @@ public class SchePagerAdapter extends BaseAdapter {
     };
     private LayoutInflater mInflater;
     private ArrayList<Session> sessionItems;
+    private Context mContext;
 
     public SchePagerAdapter(Track track, Context context) {
 
         this.sessionItems = track.sessions;
         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+        this.mContext = context;
     }
 
     @Override
     public int getCount() {
-        return sessionItems.size()+2;
+        return sessionItems.size() + 2;
     }
 
     @Override
@@ -81,6 +89,7 @@ public class SchePagerAdapter extends BaseAdapter {
             sessionHolder = new SessionViewHolder();
             sessionHolder.sessionTime = (TextView) convertView.findViewById(R.id.item_sche_list_time);
             sessionHolder.speakerImg = (ImageView) convertView.findViewById(R.id.item_sche_list_speaker_img);
+            sessionHolder.speakerImgSecond = (ImageView) convertView.findViewById(R.id.item_sche_list_speaker_img_second);
             sessionHolder.speakerName = (TextView) convertView.findViewById(R.id.item_sche_list_speaker_name);
             sessionHolder.sessionName = (TextView) convertView.findViewById(R.id.item_sche_list_session_title);
 
@@ -94,54 +103,82 @@ public class SchePagerAdapter extends BaseAdapter {
             sessionHolder = (SessionViewHolder) convertView.getTag();
         }
 
-        if (position>=0&&position<=7){
-            if (position==0){
+        if (position >= 0 && position <= 7) {
+            if (position == 0) {
                 sessionHolder.dayView.setVisibility(View.VISIBLE);
                 sessionHolder.dayText.setText("Day 1");
                 sessionHolder.dateText.setText("9.14");
-            }else{
+            } else {
+                Session sessionItem = sessionItems.get(position - 1);
                 sessionHolder.dayView.setVisibility(View.INVISIBLE);
+                sessionHolder.sessionTime.setText(sessionTimes[position - 1]);
 
-                sessionHolder.sessionTime.setText(sessionTimes[position-1]);
+                if (sessionItem.speakers.size() > 1) {
+                    setTwoSpeakerInfo(sessionHolder, sessionItem);
+                } else {
+                    setOneSpeakerInfo(sessionHolder, sessionItem);
+                }
 
-                Glide.with(DeviewSchedApplication.GLOBAL_CONTEXT)
-                        .load(sessionItems.get(position-1).speakers.get(0).img)
-                        .transform(new GlideCircleTransform(DeviewSchedApplication.GLOBAL_CONTEXT))
-                        .override(54, 54) //임의로 결정한 크기임.
-                        .into(sessionHolder.speakerImg);
-
-                sessionHolder.speakerName.setText(sessionItems.get(position-1).speakers.get(0).name);
-                sessionHolder.sessionName.setText(sessionItems.get(position-1).session_title);
+                sessionHolder.sessionName.setText(sessionItem.session_title);
             }
-        }else if (position>=8){
-            if (position==8){
+        } else if (position >= 8) {
+            if (position == 8) {
                 sessionHolder.dayView.setVisibility(View.VISIBLE);
                 sessionHolder.dayText.setText("Day 2");
                 sessionHolder.dateText.setText("9.15");
-            }else{
+            } else {
+                Session sessionItem = sessionItems.get(position - 2);
                 sessionHolder.dayView.setVisibility(View.INVISIBLE);
+                sessionHolder.sessionTime.setText(sessionTimes[position - 2]);
 
-                sessionHolder.sessionTime.setText(sessionTimes[position-2]);
+                if (sessionItem.speakers.size() > 1) {
+                    setTwoSpeakerInfo(sessionHolder, sessionItem);
+                } else {
+                    setOneSpeakerInfo(sessionHolder, sessionItem);
+                }
 
-                Glide.with(DeviewSchedApplication.GLOBAL_CONTEXT)
-                        .load(sessionItems.get(position-2).speakers.get(0).img)
-                        .transform(new GlideCircleTransform(DeviewSchedApplication.GLOBAL_CONTEXT))
-                        .override(54, 54) //임의로 결정한 크기임.
-                        .into(sessionHolder.speakerImg);
-
-                sessionHolder.speakerName.setText(sessionItems.get(position-2).speakers.get(0).name);
-                sessionHolder.sessionName.setText(sessionItems.get(position-2).session_title);
+                sessionHolder.sessionName.setText(sessionItem.session_title);
             }
-
         }
 
         return convertView;
+    }
+
+    public void setOneSpeakerInfo(SessionViewHolder sessionHolder, Session sessionItem) {
+        sessionHolder.speakerImgSecond.setVisibility(View.GONE);
+
+        Glide.with(DeviewSchedApplication.GLOBAL_CONTEXT)
+                .load(sessionItem.speakers.get(0).img)
+                .transform(new GlideCircleTransform(DeviewSchedApplication.GLOBAL_CONTEXT))
+                .override(54, 54) //임의로 결정한 크기임.
+                .into(sessionHolder.speakerImg);
+
+        sessionHolder.speakerName.setText(sessionItem.speakers.get(0).name);
+    }
+
+    private void setTwoSpeakerInfo(SessionViewHolder sessionHolder, Session sessionItem) {
+        sessionHolder.speakerImgSecond.setVisibility(View.VISIBLE);
+
+        Glide.with(DeviewSchedApplication.GLOBAL_CONTEXT)
+                .load(sessionItem.speakers.get(0).img)
+                .transform(new GlideCircleTransform(DeviewSchedApplication.GLOBAL_CONTEXT))
+                .override(54, 54) //임의로 결정한 크기임.
+                .into(sessionHolder.speakerImg);
+
+        Glide.with(DeviewSchedApplication.GLOBAL_CONTEXT)
+                .load(sessionItem.speakers.get(1).img)
+                .transform(new GlideCircleTransform(DeviewSchedApplication.GLOBAL_CONTEXT))
+                .override(54, 54) //임의로 결정한 크기임.
+                .into(sessionHolder.speakerImgSecond);
+
+        sessionHolder.speakerName.setText(sessionItem.speakers.get(0).name+"/"+sessionItem.speakers.get(1).name);
     }
 
     public static class SessionViewHolder {
 
         public TextView sessionTime;
         public ImageView speakerImg;
+        public ImageView speakerImgSecond;
         public TextView speakerName;
         public TextView sessionName;
 
